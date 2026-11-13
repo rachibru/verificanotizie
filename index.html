@@ -4,515 +4,358 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registro Pubblico di Tracciabilità | BrunoRachiele.it</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="https://www.brunorachiele.it/favicon.ico">
+  <style>
+    :root {
+      --primary: #0f294a;
+      --accent: #0d7a3e;
+      --accent-bg: #eaf6ef;
+      --border: #dce3ec;
+      --bg: #f3f6fa;
+      --text: #1c2430;
+      --muted: #5a6778;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+    }
+    .topbar-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
+    .back-site {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #f8fafc;
+    }
+    .back-site:hover { background: #eef3f9; }
+    .hero {
+      background: linear-gradient(135deg, #0f294a 0%, #193e6b 100%);
+      color: #ffffff;
+      padding: 36px 20px 44px;
+    }
+    .hero-inner {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      margin: 0 0 10px 0;
+      font-size: 1.75rem;
+      line-height: 1.25;
+    }
+    .hero p {
+      margin: 0;
+      color: #d6e2f0;
+      font-size: 0.98rem;
+      max-width: 680px;
+    }
+    .container {
+      max-width: 880px;
+      margin: -24px auto 48px;
+      padding: 0 16px;
+    }
+    .toolbar {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 14px rgba(15, 41, 74, 0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .counter {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .counter strong {
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      max-width: 380px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(15, 41, 74, 0.08);
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .trust-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 16px 20px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .trust-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(15, 41, 74, 0.06);
+    }
+    .trust-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .trust-pill {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid #b7e2c9;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+    .trust-hash {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .trust-item-title {
+      margin: 0 0 10px 0;
+      font-size: 1.08rem;
+      line-height: 1.35;
+    }
+    .trust-item-title a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .trust-item-title a:hover {
+      text-decoration: underline;
+    }
+    .trust-item-actions {
+      display: flex;
+      gap: 16px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+    .link-cert {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .link-orig {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .link-cert:hover, .link-orig:hover { text-decoration: underline; }
+    footer {
+      max-width: 880px;
+      margin: 0 auto 40px;
+      padding: 0 16px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f7fa; color: #1c2430; margin: 0; padding: 24px 16px;">
-  <div style="max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid #dce3ec; border-radius: 12px; padding: 28px;">
-    <h1 style="color: #0f294a; margin-top: 0;">Registro di Tracciabilità Editoriale — BrunoRachiele.it</h1>
-    <p style="color: #5a6778;">Elenco pubblico dei contenuti verificati con impronta crittografica SHA-256 e conformità agli standard di trasparenza giornalistica.</p>
-    <ul style="list-style: none; padding: 0; margin: 20px 0 0 0;">
-      
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-11-11 • SHA-256: <code>f9e820f203762abd...</code></div>
-          <a href="f9e820f203762abd68c0030a9e67ddecde43706ae91194afb3c510cd0ac6f88c.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Scenari Nuova Legge Elettorale Stabilicum - 11 Novembre 2026</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-11-09 • SHA-256: <code>06895079304d4c1e...</code></div>
-          <a href="06895079304d4c1e558e431942ce1d4863e21fa5420a1fa689d95156fdc46712.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Supermedia Gradimento Leader Politici - 09 Novembre 2026</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-11-08 • SHA-256: <code>07b573855f1f5d34...</code></div>
-          <a href="07b573855f1f5d342184001fb9b3e447f53d02673a32a319663c0d8fcdacaf5c.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Rassegna Domenicale: Voto anticipato a maggio, scontro sul fine vita in Veneto e la scossa dei Midterm Usa su mercati e Manovra 2027</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-11-07 • SHA-256: <code>647867d8d41d0ccf...</code></div>
-          <a href="647867d8d41d0ccff820a6d9856b0c0f5ef3f6cae4757b338e9f97de3b2244b8.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 07 novembre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-11-01 • SHA-256: <code>a58f9f6a1c68aeb5...</code></div>
-          <a href="a58f9f6a1c68aeb51ea6b638d8642dc02f49e933820d90a05c143d2e336bd9b8.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Rassegna Domenicale: La Manovra alza il Forfettario a 100mila euro, Meloni supera il 29% e le urne scuotono Israele e Serbia</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-10-31 • SHA-256: <code>1096b4c8a243993d...</code></div>
-          <a href="1096b4c8a243993dd585b14f4c70fcac08d066aa824c1f25eedf170d49d9ba7e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 31 ottobre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-10-17 • SHA-256: <code>a0b2fa354c593b8e...</code></div>
-          <a href="a0b2fa354c593b8e1f3a26a82bf1285c690c149ff7c63bf5c4872c2bea792008.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 17 ottobre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-10-10 • SHA-256: <code>7ba59ded5496d7d2...</code></div>
-          <a href="7ba59ded5496d7d2fa30266d1930095c3cc23dbdca012af57ccf6ab3b4d47472.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 10 ottobre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-10-03 • SHA-256: <code>81131f0bd3aad05b...</code></div>
-          <a href="81131f0bd3aad05b451f41810656f3edf92c480e92424523a583335ca6885b03.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 3 ottobre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-09-26 • SHA-256: <code>fe8a42e343eb37d9...</code></div>
-          <a href="fe8a42e343eb37d94386ee7a3a3c7c12b0cd731a8bb9371129515d2a04792e02.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 26 settembre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-09-19 • SHA-256: <code>c9facf66a1de8c4e...</code></div>
-          <a href="c9facf66a1de8c4e8e108cefd7d64f6e7fa96c1c292af59c71cab201e08bed87.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 19 settembre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-09-12 • SHA-256: <code>eab25a3998f5947f...</code></div>
-          <a href="eab25a3998f5947fc15103b7643776934edff47bba59fe77f41ed3d23f36ed87.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 12 settembre 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-15 • SHA-256: <code>251b1228af092cc7...</code></div>
-          <a href="251b1228af092cc7ea9dc0e99a22c924c80e230fa432418c3059de403eec6a9a.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 15 maggio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-13 • SHA-256: <code>92e1a88d55e43f02...</code></div>
-          <a href="92e1a88d55e43f02fe4571f7305369bb6f13662f246786b187ce5d512ad680bd.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 13 maggio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-11 • SHA-256: <code>f92a13a67721f87e...</code></div>
-          <a href="f92a13a67721f87e76cabcb11224b036a230b32e3f32558463aba7cbb4227b30.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader – Supermedia del 11 maggio 2026</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-09 • SHA-256: <code>09bc4aaf972bb98f...</code></div>
-          <a href="09bc4aaf972bb98f650616acc0e3dfe4c78ede924db0543a5c110d9b3474071e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 09 maggio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-08 • SHA-256: <code>058ad8eb3619490c...</code></div>
-          <a href="058ad8eb3619490caf58fa3bade829b2c17b443ee4963b7bfc0e417884728f0a.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici dell&#x27;8 maggio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-06 • SHA-256: <code>763e36a790e922da...</code></div>
-          <a href="763e36a790e922da95a0ef3be8aff06233ba72624a3365164ec42c47fbf1f425.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 6 maggio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-04 • SHA-256: <code>06cf5f5e55e5577a...</code></div>
-          <a href="06cf5f5e55e5577a151e754c73f83c285d77ef0197975766bc5beb814ad6eb00.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 4 maggio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-05-02 • SHA-256: <code>689ea73213cb1496...</code></div>
-          <a href="689ea73213cb1496acee2f294944a2c5a461b8c042862a052ac784ee27a38e55.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 2 maggio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-04-25 • SHA-256: <code>cb521842e246bd8f...</code></div>
-          <a href="cb521842e246bd8f7f4bc52c14f2377838fdb230f9fe02ae89b7ed6c4b320a02.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 25 aprile 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-04-20 • SHA-256: <code>7752334c15d4e14f...</code></div>
-          <a href="7752334c15d4e14f65eb3e27a023bf36025267278c8c0ad724346d2688411618.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 20 aprile 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-03-21 • SHA-256: <code>b28faee76d163030...</code></div>
-          <a href="b28faee76d163030884a673a278fb506a8b139fb7852afc349d2ead85c76166f.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Referendum Giustizia – Risultati Live da San Pietro a Maida</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-03-21 • SHA-256: <code>845362e40903550d...</code></div>
-          <a href="845362e40903550d1f63d2426da04a8b493698835e29247d275459cb98127011.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Speciale Referendum Giustizia - Dati e risultati live Nazionali</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-03-06 • SHA-256: <code>30ffa206ee11aba2...</code></div>
-          <a href="30ffa206ee11aba2450d5f2783dacfdc5115daaf6ddb96cb61a57ac8ea476be3.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 6 marzo 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-03-04 • SHA-256: <code>72a6f9c5c17b12fc...</code></div>
-          <a href="72a6f9c5c17b12fc8f43de670c8e07b9a01648eb6c1f3ffb6e9fc36f2fa71006.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 4 marzo 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-03-02 • SHA-256: <code>5caa97d886962ec8...</code></div>
-          <a href="5caa97d886962ec86146568b9e5a64a3a71d0eb6eff270a62bb8c3d29d46e7b2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 2 marzo 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-28 • SHA-256: <code>53b02fcfc0fea106...</code></div>
-          <a href="53b02fcfc0fea106d5c8f2ae9453f3414efcaa8d5c8a46b4c3ffc09b7046662d.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 28 febbraio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-27 • SHA-256: <code>880824013a8d9cdb...</code></div>
-          <a href="880824013a8d9cdb0ab37fe935c3b4976efa94395246c8bc5ab1968f81d2222f.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 27 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-25 • SHA-256: <code>13a30c152cf526fe...</code></div>
-          <a href="13a30c152cf526fe2727b2c6425f3292ef18d6ed3ecfabd65a7186bd5f06ef53.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 25 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-23 • SHA-256: <code>1405a062780dc662...</code></div>
-          <a href="1405a062780dc662cb4f344e3f6999938c9d60afe7241a0c82f9a498f1a87def.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 23 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-21 • SHA-256: <code>f4613ee23631b477...</code></div>
-          <a href="f4613ee23631b47721760e5ec42ef29d60b5441b2d7df350798a41537ffe7c8e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 21 febbraio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-20 • SHA-256: <code>1eee889b34f7578b...</code></div>
-          <a href="1eee889b34f7578b892dd8f784b5ee09d6fea26428cf4423c093fd86d720b72b.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 20 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-18 • SHA-256: <code>f10b5020479f3032...</code></div>
-          <a href="f10b5020479f303299ebed2ba675ded5b3d3a007e4d62fbe6bc208e2fc0ccf3e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 18 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-16 • SHA-256: <code>1ce51d476f23055c...</code></div>
-          <a href="1ce51d476f23055cb91c5c81229499d8b7f434f70472e7102fc153081210b9ad.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 16 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-14 • SHA-256: <code>ba9f4fe939ab9e54...</code></div>
-          <a href="ba9f4fe939ab9e54540f81c65a9d1ee2bbb10ab5b2219081ee23a6f434d44b06.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 14 febbraio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-13 • SHA-256: <code>d47939ea9a12eb1b...</code></div>
-          <a href="d47939ea9a12eb1bfbf5fbb6799ac5e04e2d850f9579dcc5bf42b9ca586727bd.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 13 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-11 • SHA-256: <code>d9497bf7567ff4d0...</code></div>
-          <a href="d9497bf7567ff4d0cc2c3ef4705a23307a3c9a13443e6f265344d836794fe7f2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri dell&#x27;11 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-09 • SHA-256: <code>97f866305e31e5e3...</code></div>
-          <a href="97f866305e31e5e3d6bf132c7f86b8411f9852004f43180a4833b1fb01d8ad30.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 09 febbraio 2026 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-07 • SHA-256: <code>cd1276afb32ad3c3...</code></div>
-          <a href="cd1276afb32ad3c39d7e35d637ae21dff149e6d17ac5074a1d5048e5a070be34.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 07 febbraio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-06 • SHA-256: <code>b0e32062ebca2265...</code></div>
-          <a href="b0e32062ebca22653376ce070d3c75415a84d03ac81d4cb4581552774ddb7b81.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 06 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-04 • SHA-256: <code>9d35bfb0cd29d1f0...</code></div>
-          <a href="9d35bfb0cd29d1f062d772a8a1738a43525891a937a1a289692c3cc08c14f84e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 04 febbraio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-02-02 • SHA-256: <code>fd54f28179c14859...</code></div>
-          <a href="fd54f28179c14859d280e5033b02814617cb2ca1437b657f09f31a30d0d7bb68.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 02 febbraio 2026 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-31 • SHA-256: <code>0e6674e4d2d3aba5...</code></div>
-          <a href="0e6674e4d2d3aba5c46bca2de1e3af60e1e36d1f65f3806709463cd47f44bd48.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 31 gennaio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-30 • SHA-256: <code>a4fc8632595321b7...</code></div>
-          <a href="a4fc8632595321b736d30d9bb9defdd6362fb2ff07f19b3738bbc6eb519d4134.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 30 gennaio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-28 • SHA-256: <code>8907691e1cc6b10d...</code></div>
-          <a href="8907691e1cc6b10dcc0f59f5dbfddc45ea9473a8281822dc4a4bdb01432d6429.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 28 gennaio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-26 • SHA-256: <code>5284658befbfda5b...</code></div>
-          <a href="5284658befbfda5b6b99a5c0a615fa8f890aabb60bb840692cf92371c4cb1e57.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 26 gennaio 2026 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-24 • SHA-256: <code>495bd91a0514c6df...</code></div>
-          <a href="495bd91a0514c6dfd5671c6be9e593112fbd1922b31552cfa72aacff9eee5dbf.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 24 gennaio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-23 • SHA-256: <code>242dec49c3894e08...</code></div>
-          <a href="242dec49c3894e08c238b79d3ec731ccd6efcf4b3cefa4ec177bcde7f3aea727.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 23 gennaio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-21 • SHA-256: <code>509ecaa1ddbd19da...</code></div>
-          <a href="509ecaa1ddbd19daaaa0b6287709fb981f9635605a9bdd30e881c4cc861dac6f.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 21 gennaio 2026 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-19 • SHA-256: <code>99b5eb5fedcc75de...</code></div>
-          <a href="99b5eb5fedcc75de2cab8c2eb66cb49dc525af48cd8e41398e720ebccf578d3f.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 19 gennaio 2026 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-17 • SHA-256: <code>4f660816748ec3dd...</code></div>
-          <a href="4f660816748ec3dd44144d01d5b0f6a2e2fe1be8c205ba3a8f9d8445d579c5a2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 17 gennaio 2026 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-12 • SHA-256: <code>3b8ca0f3ba11bb2c...</code></div>
-          <a href="3b8ca0f3ba11bb2c76f08ce8cf1108cf5b8aaf1b525e6d9aaa92c79cf949a203.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Cosa emerge dal Gradimento dei Leader del 12 gennaio 2026</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-10 • SHA-256: <code>813022d51c5a8a9f...</code></div>
-          <a href="813022d51c5a8a9fed99b08be844ddc24993116554789bfedb730cc901f30fa9.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggi Politici 2026: cosa potrebbe cambiare in Italia secondo gli analisti</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2026-01-05 • SHA-256: <code>f994fc1d3d3e350f...</code></div>
-          <a href="f994fc1d3d3e350faf9459c76e249c4a8890783c9b565a1a044f0f94b07c2bf4.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 05 gennaio 2026 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-31 • SHA-256: <code>3babb7eda776c17d...</code></div>
-          <a href="3babb7eda776c17dacc289397e3e4b0f2fd1f176296f7a038a447298252b94aa.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Messaggio di fine anno di Mattarella 2025 | Analisi Parole - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-30 • SHA-256: <code>140c0317ff089103...</code></div>
-          <a href="140c0317ff089103bd59e421c8c25968e575fb073a1d4b6843bc6009d35260e9.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggi Politici  2025 – Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-29 • SHA-256: <code>0ca5f51da67d9280...</code></div>
-          <a href="0ca5f51da67d9280719ccacb76b6cd2952ee4602d6fdd89cb91705640b711ab2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei leader: la classifica definitiva del 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-27 • SHA-256: <code>3350e7074c3ea5e4...</code></div>
-          <a href="3350e7074c3ea5e4c1e31d8296e90bf3d6bc44baedc4ac00ae247e86b525551e.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 27 dicembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-26 • SHA-256: <code>c761082678b14d88...</code></div>
-          <a href="c761082678b14d88e1bd0e3ab03e7ea8430258a8a6c432381dfa618709f06730.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 26 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-23 • SHA-256: <code>e4943fe4c53593ee...</code></div>
-          <a href="e4943fe4c53593eed1c537f6112bc2f112ec310ac9a2309fc89d005113bfbd72.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 23 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-22 • SHA-256: <code>99d22c514faf20c6...</code></div>
-          <a href="99d22c514faf20c6f45aa8840045097ad80760a3173a0956c642f3e13b56f57c.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 22 dicembre 2025 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-20 • SHA-256: <code>43203476f6ea1c50...</code></div>
-          <a href="43203476f6ea1c50d992bd6503aab8a6c37cd15edf937c14daacab674dd652e0.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 20 dicembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-19 • SHA-256: <code>1981ccfadc1322e3...</code></div>
-          <a href="1981ccfadc1322e3fa64af3e186ed8bf797f1f26c06176282f96445066fda173.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 19 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-17 • SHA-256: <code>d8df3e6e72a3f65d...</code></div>
-          <a href="d8df3e6e72a3f65d3fcfe8125b0213545434935fc9dc4b103537e9198077c264.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 17 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-15 • SHA-256: <code>02d87ee31720790c...</code></div>
-          <a href="02d87ee31720790c70487584528b73179498ea0c3fd63291621c20138618c465.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 15 dicembre 2025 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-13 • SHA-256: <code>af4be520d1c2fe03...</code></div>
-          <a href="af4be520d1c2fe036c54ffbbe48cae42149c8343afc5582a0702af94f97ef9b9.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 13 dicembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-12 • SHA-256: <code>7cde0147d3e3ea4f...</code></div>
-          <a href="7cde0147d3e3ea4f52e4e338c5bc4a1ab528fb24facfc1c3baf0998986cba4fa.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 12 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-10 • SHA-256: <code>a0cb7a2d9a6d8043...</code></div>
-          <a href="a0cb7a2d9a6d80436bf9f5f4d83d9df726b8a1d9ce99121199de84fb23c89274.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 10 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-08 • SHA-256: <code>b86277d66b7e89c7...</code></div>
-          <a href="b86277d66b7e89c7820e615b3b6dad93ee15cc49c12c2f29e517e4eb5695caff.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia dell&#x27;8 dicembre 2025 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-06 • SHA-256: <code>1c975bdb51f0876f...</code></div>
-          <a href="1c975bdb51f0876fcf91c167466e0feb252ca4769c81bd258634f9e16db6535b.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 06 dicembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-05 • SHA-256: <code>386238729ddf0152...</code></div>
-          <a href="386238729ddf01524d25c6b42b22ba38acd96f0d1f782acf2357e02b1d87ccb4.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 05 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-03 • SHA-256: <code>517a6275eeb97e6a...</code></div>
-          <a href="517a6275eeb97e6a808516915843e086be9c1e755e827be11e5d5941eab0ba50.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 03 dicembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-12-01 • SHA-256: <code>4408576c59302a21...</code></div>
-          <a href="4408576c59302a21311b52ed44e88b7972546bc2320e4e0e8f3527b4f9e13643.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Gradimento dei Leader supermedia del 1 dicembre 2025 - Bruno Rachiele </a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-29 • SHA-256: <code>90b9ae638fdf3b02...</code></div>
-          <a href="90b9ae638fdf3b024f670cd58bb35e8e67b336e4b9d7e775212bac42eb09d0e0.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 29 novembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-28 • SHA-256: <code>4e5539c5139f4327...</code></div>
-          <a href="4e5539c5139f4327f417d3604a6edcb0180102a70fa5ccf231191c7fa260b5e9.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ultimi 30 giorni Politici del 28 novembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-26 • SHA-256: <code>1f31ecbb6ceec9fd...</code></div>
-          <a href="1f31ecbb6ceec9fde26947939611126b19c7390c2b4ea30f74dff1725e07fb72.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Dalle urne ai numeri del 26 novembre 2025 - Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-22 • SHA-256: <code>49ce6d48850e9118...</code></div>
-          <a href="49ce6d48850e9118b70793a60166200ad98feca5ff62b9bdf18ea01b9b45d4df.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 22 novembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-15 • SHA-256: <code>97c8fc371de54691...</code></div>
-          <a href="97c8fc371de54691c5b0a4e744cb99fd01b523276e12aec6cf6db4efe50761c1.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 15 novembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-08 • SHA-256: <code>7f1b20ab1e950211...</code></div>
-          <a href="7f1b20ab1e950211c12454e4e375b11eba04978978806e5da34c81a20097b839.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 08 novembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-11-01 • SHA-256: <code>f5031be1352c5c44...</code></div>
-          <a href="f5031be1352c5c4442aac0ad32970feace435c325d8571071a34c22eb503594f.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 01 novembre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-10-25 • SHA-256: <code>a0380557f73fe75b...</code></div>
-          <a href="a0380557f73fe75b82cb15010f6509181fa53ca40c19f3e875683b91502bbd6c.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 25 ottobre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-10-18 • SHA-256: <code>0b6a5f1d02dd8613...</code></div>
-          <a href="0b6a5f1d02dd861347e60e8352af7676f35b79693458c80d5d13947a262f7dd2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 18 ottobre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-10-11 • SHA-256: <code>2e24691de488798d...</code></div>
-          <a href="2e24691de488798d7191584f51f81fa1c1a22d58efea54feb6fad0293d997e3a.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Sondaggio Politico 11 ottobre 2025 – Supermedia Bruno Rachiele</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-10-07 • SHA-256: <code>5cfb3f3ff2ef4d09...</code></div>
-          <a href="5cfb3f3ff2ef4d09b84af4567ae9e8bbac35a1c1633c83ed9801bcde1f010de0.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Eletti Elezioni Regionali Calabria 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-10-02 • SHA-256: <code>a8a5b11e9360bd0a...</code></div>
-          <a href="a8a5b11e9360bd0a01a7f67c930be07866bbbd0c094c6976929164e8598fc2ea.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Speciale Elezioni Regionali 2025 - San Pietro a Maida: Risultati UFFICIALI</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-09-27 • SHA-256: <code>e1e0c6d7ff7019f8...</code></div>
-          <a href="e1e0c6d7ff7019f8898cbdc254e26118a15f71515e5eefc5e192fe9a7350d6c7.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 27 settembre 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-09-13 • SHA-256: <code>f8390de84a849cdd...</code></div>
-          <a href="f8390de84a849cdd799e773513fbc3ef06135b653a2dfe7f1c00a3c2544c96c7.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 13 settembre 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-09-06 • SHA-256: <code>ecb5e0dfcd75da3a...</code></div>
-          <a href="ecb5e0dfcd75da3a55405b7890c224d962f7a7b3e6d2ada81fd1eb395abd46bb.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 06 settembre 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-06-07 • SHA-256: <code>15a2cf50bb6ec0d5...</code></div>
-          <a href="15a2cf50bb6ec0d536283b4aae9ad886994ec9f04a10af81b7baa8d698d44244.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Ballottaggio Lamezia Terme 2025: Risultati in Diretta</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-06-07 • SHA-256: <code>d262fe9c6506d06f...</code></div>
-          <a href="d262fe9c6506d06f851f2c12f5f0fb0a5cd7f04a1106a2ab0b6b00b7275db114.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Referendum 2025 a San Pietro a Maida risultati ufficiali</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-06-06 • SHA-256: <code>9af89716863b420c...</code></div>
-          <a href="9af89716863b420cc8d8079b7336eb94e606848d47633c58f2901da4e860a758.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Referendum 2025: Guida al Voto dell’8 e 9 Giugno – Quesiti, Orari e Documenti</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-04-06 • SHA-256: <code>cffb863863269caa...</code></div>
-          <a href="cffb863863269caa5c523193d10628b753981c5a5d63d93d1a50d42356eb8346.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">La censura letteraria: Libri vietati e il loro impatto</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-04-05 • SHA-256: <code>b29661e5f61ecfbd...</code></div>
-          <a href="b29661e5f61ecfbde4bb791dd327026dcc1f14be50b116dd7e15a20f1e8cdc5c.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 05 aprile 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-31 • SHA-256: <code>b206a3ccffb6d00b...</code></div>
-          <a href="b206a3ccffb6d00b0831583b5494fd29b763701b50238cdef4afde2c95b0741d.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Boom del Settore Digitale: L’Italia è Pronta per la Rivoluzione 4.0?</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-30 • SHA-256: <code>f2aca68433b7d8d1...</code></div>
-          <a href="f2aca68433b7d8d1b3f1aa6313d691ee2968dd692b975abf23467c1cae38c6b5.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Come i libri riflettono il nostro tempo</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-29 • SHA-256: <code>d844cfc044edc021...</code></div>
-          <a href="d844cfc044edc02161b071b3ad01f7dd289550d140a9141bc1d622c60c394952.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 29 marzo 2025</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-24 • SHA-256: <code>5678c822e234b402...</code></div>
-          <a href="5678c822e234b402f8db4ce9923c6ab4658362b24449ea7b2f4787fbff45da13.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Evasione Fiscale 2024: Dati e Impatti sull&#x27;Economia Italiana</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-23 • SHA-256: <code>126e10bb61cd0e64...</code></div>
-          <a href="126e10bb61cd0e64da925e739f018841d028a720610a263a90a0cbee0d8559d2.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Consigli per chi si avvicina alla lettura: Da dove iniziare?</a>
-        </li>
-        
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">2025-03-22 • SHA-256: <code>5393ae28942041c5...</code></div>
-          <a href="5393ae28942041c59b416a81bb6d7b3e2bb81eda5943c6901a8af279273a38df.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">Intenzioni di Voto - 22 marzo 2025</a>
-        </li>
-        
-    </ul>
-  </div>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="https://trust.brunorachiele.it/" class="brand">
+        <img src="https://static.brunorachiele.it/trust.png" alt="Trust Logo" onerror="this.src='https://www.brunorachiele.it/favicon.ico'">
+        <span>TRUST • BrunoRachiele.it</span>
+      </a>
+      <a href="https://www.brunorachiele.it" class="back-site">← Torna a BrunoRachiele.it</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-badge">STANDARD TRASPARENZA EDITORIALE • SHA-256</span>
+      <h1>Registro Pubblico di Tracciabilità</h1>
+      <p>Archivio crittografico dei contenuti originali pubblicati da BrunoRachiele.it. Ogni scheda attesta data, provenienza e integrità digitale dell'articolo.</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="toolbar">
+      <div class="counter">Contenuti certificati in archivio: <strong>100</strong></div>
+      <input type="search" id="trustSearch" class="search-input" placeholder="Cerca per titolo o impronta SHA-256...">
+    </div>
+
+    <div class="list" id="trustList">
+      <article class="trust-item" data-search="scenari nuova legge elettorale stabilicum - 11 novembre 2026 f9e820f203762abd68c0030a9e67ddecde43706ae91194afb3c510cd0ac6f88c"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-11-11</span><span class="trust-hash" title="f9e820f203762abd68c0030a9e67ddecde43706ae91194afb3c510cd0ac6f88c">SHA-256: f9e820f203762abd…</span></div><h2 class="trust-item-title"><a href="f9e820f203762abd68c0030a9e67ddecde43706ae91194afb3c510cd0ac6f88c.html">Scenari Nuova Legge Elettorale Stabilicum - 11 Novembre 2026</a></h2><div class="trust-item-actions"><a href="f9e820f203762abd68c0030a9e67ddecde43706ae91194afb3c510cd0ac6f88c.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/11/scenari-legge-elettorale-stabilicum-09-novembre-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="supermedia gradimento leader politici - 09 novembre 2026 06895079304d4c1e558e431942ce1d4863e21fa5420a1fa689d95156fdc46712"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-11-09</span><span class="trust-hash" title="06895079304d4c1e558e431942ce1d4863e21fa5420a1fa689d95156fdc46712">SHA-256: 06895079304d4c1e…</span></div><h2 class="trust-item-title"><a href="06895079304d4c1e558e431942ce1d4863e21fa5420a1fa689d95156fdc46712.html">Supermedia Gradimento Leader Politici - 09 Novembre 2026</a></h2><div class="trust-item-actions"><a href="06895079304d4c1e558e431942ce1d4863e21fa5420a1fa689d95156fdc46712.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/11/gradimento-leader-politici-09-novembre-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="rassegna domenicale: voto anticipato a maggio, scontro sul fine vita in veneto e la scossa dei midterm usa su mercati e manovra 2027 07b573855f1f5d342184001fb9b3e447f53d02673a32a319663c0d8fcdacaf5c"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-11-08</span><span class="trust-hash" title="07b573855f1f5d342184001fb9b3e447f53d02673a32a319663c0d8fcdacaf5c">SHA-256: 07b573855f1f5d34…</span></div><h2 class="trust-item-title"><a href="07b573855f1f5d342184001fb9b3e447f53d02673a32a319663c0d8fcdacaf5c.html">Rassegna Domenicale: Voto anticipato a maggio, scontro sul fine vita in Veneto e la scossa dei Midterm Usa su mercati e Manovra 2027</a></h2><div class="trust-item-actions"><a href="07b573855f1f5d342184001fb9b3e447f53d02673a32a319663c0d8fcdacaf5c.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/11/rassegna-domenicale-voto-anticipato.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 07 novembre 2026 – supermedia bruno rachiele 647867d8d41d0ccff820a6d9856b0c0f5ef3f6cae4757b338e9f97de3b2244b8"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-11-07</span><span class="trust-hash" title="647867d8d41d0ccff820a6d9856b0c0f5ef3f6cae4757b338e9f97de3b2244b8">SHA-256: 647867d8d41d0ccf…</span></div><h2 class="trust-item-title"><a href="647867d8d41d0ccff820a6d9856b0c0f5ef3f6cae4757b338e9f97de3b2244b8.html">Sondaggio Politico 07 novembre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="647867d8d41d0ccff820a6d9856b0c0f5ef3f6cae4757b338e9f97de3b2244b8.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/11/sondaggio-politico-07-novembre-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="rassegna domenicale: la manovra alza il forfettario a 100mila euro, meloni supera il 29% e le urne scuotono israele e serbia a58f9f6a1c68aeb51ea6b638d8642dc02f49e933820d90a05c143d2e336bd9b8"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-11-01</span><span class="trust-hash" title="a58f9f6a1c68aeb51ea6b638d8642dc02f49e933820d90a05c143d2e336bd9b8">SHA-256: a58f9f6a1c68aeb5…</span></div><h2 class="trust-item-title"><a href="a58f9f6a1c68aeb51ea6b638d8642dc02f49e933820d90a05c143d2e336bd9b8.html">Rassegna Domenicale: La Manovra alza il Forfettario a 100mila euro, Meloni supera il 29% e le urne scuotono Israele e Serbia</a></h2><div class="trust-item-actions"><a href="a58f9f6a1c68aeb51ea6b638d8642dc02f49e933820d90a05c143d2e336bd9b8.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/11/rassegna-domenicale-la-manovra-alza-il.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 31 ottobre 2026 – supermedia bruno rachiele 1096b4c8a243993dd585b14f4c70fcac08d066aa824c1f25eedf170d49d9ba7e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-10-31</span><span class="trust-hash" title="1096b4c8a243993dd585b14f4c70fcac08d066aa824c1f25eedf170d49d9ba7e">SHA-256: 1096b4c8a243993d…</span></div><h2 class="trust-item-title"><a href="1096b4c8a243993dd585b14f4c70fcac08d066aa824c1f25eedf170d49d9ba7e.html">Sondaggio Politico 31 ottobre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1096b4c8a243993dd585b14f4c70fcac08d066aa824c1f25eedf170d49d9ba7e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/10/sondaggio-politico-31-ottobre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 17 ottobre 2026 – supermedia bruno rachiele a0b2fa354c593b8e1f3a26a82bf1285c690c149ff7c63bf5c4872c2bea792008"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-10-17</span><span class="trust-hash" title="a0b2fa354c593b8e1f3a26a82bf1285c690c149ff7c63bf5c4872c2bea792008">SHA-256: a0b2fa354c593b8e…</span></div><h2 class="trust-item-title"><a href="a0b2fa354c593b8e1f3a26a82bf1285c690c149ff7c63bf5c4872c2bea792008.html">Sondaggio Politico 17 ottobre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="a0b2fa354c593b8e1f3a26a82bf1285c690c149ff7c63bf5c4872c2bea792008.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/10/sondaggio-politico-17-ottobre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 10 ottobre 2026 – supermedia bruno rachiele 7ba59ded5496d7d2fa30266d1930095c3cc23dbdca012af57ccf6ab3b4d47472"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-10-10</span><span class="trust-hash" title="7ba59ded5496d7d2fa30266d1930095c3cc23dbdca012af57ccf6ab3b4d47472">SHA-256: 7ba59ded5496d7d2…</span></div><h2 class="trust-item-title"><a href="7ba59ded5496d7d2fa30266d1930095c3cc23dbdca012af57ccf6ab3b4d47472.html">Sondaggio Politico 10 ottobre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="7ba59ded5496d7d2fa30266d1930095c3cc23dbdca012af57ccf6ab3b4d47472.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/10/sondaggio-politico-10-ottobre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 3 ottobre 2026 – supermedia bruno rachiele 81131f0bd3aad05b451f41810656f3edf92c480e92424523a583335ca6885b03"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-10-03</span><span class="trust-hash" title="81131f0bd3aad05b451f41810656f3edf92c480e92424523a583335ca6885b03">SHA-256: 81131f0bd3aad05b…</span></div><h2 class="trust-item-title"><a href="81131f0bd3aad05b451f41810656f3edf92c480e92424523a583335ca6885b03.html">Sondaggio Politico 3 ottobre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="81131f0bd3aad05b451f41810656f3edf92c480e92424523a583335ca6885b03.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/10/sondaggio-politico-3-ottobre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 26 settembre 2026 – supermedia bruno rachiele fe8a42e343eb37d94386ee7a3a3c7c12b0cd731a8bb9371129515d2a04792e02"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-09-26</span><span class="trust-hash" title="fe8a42e343eb37d94386ee7a3a3c7c12b0cd731a8bb9371129515d2a04792e02">SHA-256: fe8a42e343eb37d9…</span></div><h2 class="trust-item-title"><a href="fe8a42e343eb37d94386ee7a3a3c7c12b0cd731a8bb9371129515d2a04792e02.html">Sondaggio Politico 26 settembre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="fe8a42e343eb37d94386ee7a3a3c7c12b0cd731a8bb9371129515d2a04792e02.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/09/sondaggio-politico-26-settembre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 19 settembre 2026 – supermedia bruno rachiele c9facf66a1de8c4e8e108cefd7d64f6e7fa96c1c292af59c71cab201e08bed87"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-09-19</span><span class="trust-hash" title="c9facf66a1de8c4e8e108cefd7d64f6e7fa96c1c292af59c71cab201e08bed87">SHA-256: c9facf66a1de8c4e…</span></div><h2 class="trust-item-title"><a href="c9facf66a1de8c4e8e108cefd7d64f6e7fa96c1c292af59c71cab201e08bed87.html">Sondaggio Politico 19 settembre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="c9facf66a1de8c4e8e108cefd7d64f6e7fa96c1c292af59c71cab201e08bed87.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/09/sondaggio-politico-19-settembre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 12 settembre 2026 – supermedia bruno rachiele eab25a3998f5947fc15103b7643776934edff47bba59fe77f41ed3d23f36ed87"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-09-12</span><span class="trust-hash" title="eab25a3998f5947fc15103b7643776934edff47bba59fe77f41ed3d23f36ed87">SHA-256: eab25a3998f5947f…</span></div><h2 class="trust-item-title"><a href="eab25a3998f5947fc15103b7643776934edff47bba59fe77f41ed3d23f36ed87.html">Sondaggio Politico 12 settembre 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="eab25a3998f5947fc15103b7643776934edff47bba59fe77f41ed3d23f36ed87.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/09/sondaggio-politico-12-settembre-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 15 maggio 2026 - bruno rachiele 251b1228af092cc7ea9dc0e99a22c924c80e230fa432418c3059de403eec6a9a"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-15</span><span class="trust-hash" title="251b1228af092cc7ea9dc0e99a22c924c80e230fa432418c3059de403eec6a9a">SHA-256: 251b1228af092cc7…</span></div><h2 class="trust-item-title"><a href="251b1228af092cc7ea9dc0e99a22c924c80e230fa432418c3059de403eec6a9a.html">Ultimi 30 giorni Politici del 15 maggio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="251b1228af092cc7ea9dc0e99a22c924c80e230fa432418c3059de403eec6a9a.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/ultimi-30-giorni-politici-15-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 13 maggio 2026 - bruno rachiele 92e1a88d55e43f02fe4571f7305369bb6f13662f246786b187ce5d512ad680bd"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-13</span><span class="trust-hash" title="92e1a88d55e43f02fe4571f7305369bb6f13662f246786b187ce5d512ad680bd">SHA-256: 92e1a88d55e43f02…</span></div><h2 class="trust-item-title"><a href="92e1a88d55e43f02fe4571f7305369bb6f13662f246786b187ce5d512ad680bd.html">Dalle urne ai numeri del 13 maggio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="92e1a88d55e43f02fe4571f7305369bb6f13662f246786b187ce5d512ad680bd.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/dalle-urne-ai-numeri-13-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader – supermedia del 11 maggio 2026 f92a13a67721f87e76cabcb11224b036a230b32e3f32558463aba7cbb4227b30"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-11</span><span class="trust-hash" title="f92a13a67721f87e76cabcb11224b036a230b32e3f32558463aba7cbb4227b30">SHA-256: f92a13a67721f87e…</span></div><h2 class="trust-item-title"><a href="f92a13a67721f87e76cabcb11224b036a230b32e3f32558463aba7cbb4227b30.html">Gradimento dei Leader – Supermedia del 11 maggio 2026</a></h2><div class="trust-item-actions"><a href="f92a13a67721f87e76cabcb11224b036a230b32e3f32558463aba7cbb4227b30.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/gradimento-dei-leader-supermedia-11-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 09 maggio 2026 – supermedia bruno rachiele 09bc4aaf972bb98f650616acc0e3dfe4c78ede924db0543a5c110d9b3474071e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-09</span><span class="trust-hash" title="09bc4aaf972bb98f650616acc0e3dfe4c78ede924db0543a5c110d9b3474071e">SHA-256: 09bc4aaf972bb98f…</span></div><h2 class="trust-item-title"><a href="09bc4aaf972bb98f650616acc0e3dfe4c78ede924db0543a5c110d9b3474071e.html">Sondaggio Politico 09 maggio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="09bc4aaf972bb98f650616acc0e3dfe4c78ede924db0543a5c110d9b3474071e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/sondaggio-politico-9-maggio-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici dell&#x27;8 maggio 2026 - bruno rachiele 058ad8eb3619490caf58fa3bade829b2c17b443ee4963b7bfc0e417884728f0a"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-08</span><span class="trust-hash" title="058ad8eb3619490caf58fa3bade829b2c17b443ee4963b7bfc0e417884728f0a">SHA-256: 058ad8eb3619490c…</span></div><h2 class="trust-item-title"><a href="058ad8eb3619490caf58fa3bade829b2c17b443ee4963b7bfc0e417884728f0a.html">Ultimi 30 giorni Politici dell&#x27;8 maggio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="058ad8eb3619490caf58fa3bade829b2c17b443ee4963b7bfc0e417884728f0a.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/ultimi-30-giorni-politici-8-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 6 maggio 2026 - bruno rachiele 763e36a790e922da95a0ef3be8aff06233ba72624a3365164ec42c47fbf1f425"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-06</span><span class="trust-hash" title="763e36a790e922da95a0ef3be8aff06233ba72624a3365164ec42c47fbf1f425">SHA-256: 763e36a790e922da…</span></div><h2 class="trust-item-title"><a href="763e36a790e922da95a0ef3be8aff06233ba72624a3365164ec42c47fbf1f425.html">Dalle urne ai numeri del 6 maggio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="763e36a790e922da95a0ef3be8aff06233ba72624a3365164ec42c47fbf1f425.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/dalle-urne-ai-numeri-del-6-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 4 maggio 2026 - bruno rachiele 06cf5f5e55e5577a151e754c73f83c285d77ef0197975766bc5beb814ad6eb00"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-04</span><span class="trust-hash" title="06cf5f5e55e5577a151e754c73f83c285d77ef0197975766bc5beb814ad6eb00">SHA-256: 06cf5f5e55e5577a…</span></div><h2 class="trust-item-title"><a href="06cf5f5e55e5577a151e754c73f83c285d77ef0197975766bc5beb814ad6eb00.html">Gradimento dei Leader supermedia del 4 maggio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="06cf5f5e55e5577a151e754c73f83c285d77ef0197975766bc5beb814ad6eb00.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/gradimento-dei-leader-supermedia-del-4-maggio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 2 maggio 2026 – supermedia bruno rachiele 689ea73213cb1496acee2f294944a2c5a461b8c042862a052ac784ee27a38e55"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-05-02</span><span class="trust-hash" title="689ea73213cb1496acee2f294944a2c5a461b8c042862a052ac784ee27a38e55">SHA-256: 689ea73213cb1496…</span></div><h2 class="trust-item-title"><a href="689ea73213cb1496acee2f294944a2c5a461b8c042862a052ac784ee27a38e55.html">Sondaggio Politico 2 maggio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="689ea73213cb1496acee2f294944a2c5a461b8c042862a052ac784ee27a38e55.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/05/sondaggio-politico-2-maggio-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 25 aprile 2026 – supermedia bruno rachiele cb521842e246bd8f7f4bc52c14f2377838fdb230f9fe02ae89b7ed6c4b320a02"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-04-25</span><span class="trust-hash" title="cb521842e246bd8f7f4bc52c14f2377838fdb230f9fe02ae89b7ed6c4b320a02">SHA-256: cb521842e246bd8f…</span></div><h2 class="trust-item-title"><a href="cb521842e246bd8f7f4bc52c14f2377838fdb230f9fe02ae89b7ed6c4b320a02.html">Sondaggio Politico 25 aprile 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="cb521842e246bd8f7f4bc52c14f2377838fdb230f9fe02ae89b7ed6c4b320a02.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/04/sondaggio-politico-25-aprile-2026-supermedia.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 20 aprile 2026 - bruno rachiele 7752334c15d4e14f65eb3e27a023bf36025267278c8c0ad724346d2688411618"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-04-20</span><span class="trust-hash" title="7752334c15d4e14f65eb3e27a023bf36025267278c8c0ad724346d2688411618">SHA-256: 7752334c15d4e14f…</span></div><h2 class="trust-item-title"><a href="7752334c15d4e14f65eb3e27a023bf36025267278c8c0ad724346d2688411618.html">Gradimento dei Leader supermedia del 20 aprile 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="7752334c15d4e14f65eb3e27a023bf36025267278c8c0ad724346d2688411618.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/04/gradimento-dei-leader-supermedia-del-20-aprile-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="referendum giustizia – risultati live da san pietro a maida b28faee76d163030884a673a278fb506a8b139fb7852afc349d2ead85c76166f"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-03-21</span><span class="trust-hash" title="b28faee76d163030884a673a278fb506a8b139fb7852afc349d2ead85c76166f">SHA-256: b28faee76d163030…</span></div><h2 class="trust-item-title"><a href="b28faee76d163030884a673a278fb506a8b139fb7852afc349d2ead85c76166f.html">Referendum Giustizia – Risultati Live da San Pietro a Maida</a></h2><div class="trust-item-actions"><a href="b28faee76d163030884a673a278fb506a8b139fb7852afc349d2ead85c76166f.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/03/speciale-referendum-giustizia-san-pietro-a-maida-bruno-rachiele.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="speciale referendum giustizia - dati e risultati live nazionali 845362e40903550d1f63d2426da04a8b493698835e29247d275459cb98127011"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-03-21</span><span class="trust-hash" title="845362e40903550d1f63d2426da04a8b493698835e29247d275459cb98127011">SHA-256: 845362e40903550d…</span></div><h2 class="trust-item-title"><a href="845362e40903550d1f63d2426da04a8b493698835e29247d275459cb98127011.html">Speciale Referendum Giustizia - Dati e risultati live Nazionali</a></h2><div class="trust-item-actions"><a href="845362e40903550d1f63d2426da04a8b493698835e29247d275459cb98127011.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/03/speciale-referendum-giustizia-bruno-rachiele.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 6 marzo 2026 - bruno rachiele 30ffa206ee11aba2450d5f2783dacfdc5115daaf6ddb96cb61a57ac8ea476be3"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-03-06</span><span class="trust-hash" title="30ffa206ee11aba2450d5f2783dacfdc5115daaf6ddb96cb61a57ac8ea476be3">SHA-256: 30ffa206ee11aba2…</span></div><h2 class="trust-item-title"><a href="30ffa206ee11aba2450d5f2783dacfdc5115daaf6ddb96cb61a57ac8ea476be3.html">Ultimi 30 giorni Politici del 6 marzo 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="30ffa206ee11aba2450d5f2783dacfdc5115daaf6ddb96cb61a57ac8ea476be3.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/03/ultimi-30-giorni-politici-del-06-marzo-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 4 marzo 2026 - bruno rachiele 72a6f9c5c17b12fc8f43de670c8e07b9a01648eb6c1f3ffb6e9fc36f2fa71006"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-03-04</span><span class="trust-hash" title="72a6f9c5c17b12fc8f43de670c8e07b9a01648eb6c1f3ffb6e9fc36f2fa71006">SHA-256: 72a6f9c5c17b12fc…</span></div><h2 class="trust-item-title"><a href="72a6f9c5c17b12fc8f43de670c8e07b9a01648eb6c1f3ffb6e9fc36f2fa71006.html">Dalle urne ai numeri del 4 marzo 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="72a6f9c5c17b12fc8f43de670c8e07b9a01648eb6c1f3ffb6e9fc36f2fa71006.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/03/dalle-urne-ai-numeri-del-4-marzo-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 2 marzo 2026 - bruno rachiele 5caa97d886962ec86146568b9e5a64a3a71d0eb6eff270a62bb8c3d29d46e7b2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-03-02</span><span class="trust-hash" title="5caa97d886962ec86146568b9e5a64a3a71d0eb6eff270a62bb8c3d29d46e7b2">SHA-256: 5caa97d886962ec8…</span></div><h2 class="trust-item-title"><a href="5caa97d886962ec86146568b9e5a64a3a71d0eb6eff270a62bb8c3d29d46e7b2.html">Gradimento dei Leader supermedia del 2 marzo 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="5caa97d886962ec86146568b9e5a64a3a71d0eb6eff270a62bb8c3d29d46e7b2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/03/gradimento-dei-leader-supermedia-del-02-marzo-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 28 febbraio 2026 – supermedia bruno rachiele 53b02fcfc0fea106d5c8f2ae9453f3414efcaa8d5c8a46b4c3ffc09b7046662d"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-28</span><span class="trust-hash" title="53b02fcfc0fea106d5c8f2ae9453f3414efcaa8d5c8a46b4c3ffc09b7046662d">SHA-256: 53b02fcfc0fea106…</span></div><h2 class="trust-item-title"><a href="53b02fcfc0fea106d5c8f2ae9453f3414efcaa8d5c8a46b4c3ffc09b7046662d.html">Sondaggio Politico 28 febbraio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="53b02fcfc0fea106d5c8f2ae9453f3414efcaa8d5c8a46b4c3ffc09b7046662d.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/supermedia-bruno-rachiele-28-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 27 febbraio 2026 - bruno rachiele 880824013a8d9cdb0ab37fe935c3b4976efa94395246c8bc5ab1968f81d2222f"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-27</span><span class="trust-hash" title="880824013a8d9cdb0ab37fe935c3b4976efa94395246c8bc5ab1968f81d2222f">SHA-256: 880824013a8d9cdb…</span></div><h2 class="trust-item-title"><a href="880824013a8d9cdb0ab37fe935c3b4976efa94395246c8bc5ab1968f81d2222f.html">Ultimi 30 giorni Politici del 27 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="880824013a8d9cdb0ab37fe935c3b4976efa94395246c8bc5ab1968f81d2222f.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/ultimi-30-giorni-politici-del-27-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 25 febbraio 2026 - bruno rachiele 13a30c152cf526fe2727b2c6425f3292ef18d6ed3ecfabd65a7186bd5f06ef53"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-25</span><span class="trust-hash" title="13a30c152cf526fe2727b2c6425f3292ef18d6ed3ecfabd65a7186bd5f06ef53">SHA-256: 13a30c152cf526fe…</span></div><h2 class="trust-item-title"><a href="13a30c152cf526fe2727b2c6425f3292ef18d6ed3ecfabd65a7186bd5f06ef53.html">Dalle urne ai numeri del 25 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="13a30c152cf526fe2727b2c6425f3292ef18d6ed3ecfabd65a7186bd5f06ef53.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/dalle-urne-ai-numeri-del-25-febbraio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 23 febbraio 2026 - bruno rachiele 1405a062780dc662cb4f344e3f6999938c9d60afe7241a0c82f9a498f1a87def"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-23</span><span class="trust-hash" title="1405a062780dc662cb4f344e3f6999938c9d60afe7241a0c82f9a498f1a87def">SHA-256: 1405a062780dc662…</span></div><h2 class="trust-item-title"><a href="1405a062780dc662cb4f344e3f6999938c9d60afe7241a0c82f9a498f1a87def.html">Gradimento dei Leader supermedia del 23 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1405a062780dc662cb4f344e3f6999938c9d60afe7241a0c82f9a498f1a87def.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/gradimento-dei-leader-supermedia-del-23-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 21 febbraio 2026 – supermedia bruno rachiele f4613ee23631b47721760e5ec42ef29d60b5441b2d7df350798a41537ffe7c8e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-21</span><span class="trust-hash" title="f4613ee23631b47721760e5ec42ef29d60b5441b2d7df350798a41537ffe7c8e">SHA-256: f4613ee23631b477…</span></div><h2 class="trust-item-title"><a href="f4613ee23631b47721760e5ec42ef29d60b5441b2d7df350798a41537ffe7c8e.html">Sondaggio Politico 21 febbraio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="f4613ee23631b47721760e5ec42ef29d60b5441b2d7df350798a41537ffe7c8e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/supermedia-bruno-rachiele-21-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 20 febbraio 2026 - bruno rachiele 1eee889b34f7578b892dd8f784b5ee09d6fea26428cf4423c093fd86d720b72b"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-20</span><span class="trust-hash" title="1eee889b34f7578b892dd8f784b5ee09d6fea26428cf4423c093fd86d720b72b">SHA-256: 1eee889b34f7578b…</span></div><h2 class="trust-item-title"><a href="1eee889b34f7578b892dd8f784b5ee09d6fea26428cf4423c093fd86d720b72b.html">Ultimi 30 giorni Politici del 20 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1eee889b34f7578b892dd8f784b5ee09d6fea26428cf4423c093fd86d720b72b.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/ultimi-30-giorni-politici-del-20-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 18 febbraio 2026 - bruno rachiele f10b5020479f303299ebed2ba675ded5b3d3a007e4d62fbe6bc208e2fc0ccf3e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-18</span><span class="trust-hash" title="f10b5020479f303299ebed2ba675ded5b3d3a007e4d62fbe6bc208e2fc0ccf3e">SHA-256: f10b5020479f3032…</span></div><h2 class="trust-item-title"><a href="f10b5020479f303299ebed2ba675ded5b3d3a007e4d62fbe6bc208e2fc0ccf3e.html">Dalle urne ai numeri del 18 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="f10b5020479f303299ebed2ba675ded5b3d3a007e4d62fbe6bc208e2fc0ccf3e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/dalle-urne-ai-numeri-del-18-febbraio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 16 febbraio 2026 - bruno rachiele 1ce51d476f23055cb91c5c81229499d8b7f434f70472e7102fc153081210b9ad"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-16</span><span class="trust-hash" title="1ce51d476f23055cb91c5c81229499d8b7f434f70472e7102fc153081210b9ad">SHA-256: 1ce51d476f23055c…</span></div><h2 class="trust-item-title"><a href="1ce51d476f23055cb91c5c81229499d8b7f434f70472e7102fc153081210b9ad.html">Gradimento dei Leader supermedia del 16 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1ce51d476f23055cb91c5c81229499d8b7f434f70472e7102fc153081210b9ad.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/gradimento-dei-leader-supermedia-del-16-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 14 febbraio 2026 – supermedia bruno rachiele ba9f4fe939ab9e54540f81c65a9d1ee2bbb10ab5b2219081ee23a6f434d44b06"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-14</span><span class="trust-hash" title="ba9f4fe939ab9e54540f81c65a9d1ee2bbb10ab5b2219081ee23a6f434d44b06">SHA-256: ba9f4fe939ab9e54…</span></div><h2 class="trust-item-title"><a href="ba9f4fe939ab9e54540f81c65a9d1ee2bbb10ab5b2219081ee23a6f434d44b06.html">Sondaggio Politico 14 febbraio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="ba9f4fe939ab9e54540f81c65a9d1ee2bbb10ab5b2219081ee23a6f434d44b06.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/supermedia-bruno-rachiele-14-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 13 febbraio 2026 - bruno rachiele d47939ea9a12eb1bfbf5fbb6799ac5e04e2d850f9579dcc5bf42b9ca586727bd"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-13</span><span class="trust-hash" title="d47939ea9a12eb1bfbf5fbb6799ac5e04e2d850f9579dcc5bf42b9ca586727bd">SHA-256: d47939ea9a12eb1b…</span></div><h2 class="trust-item-title"><a href="d47939ea9a12eb1bfbf5fbb6799ac5e04e2d850f9579dcc5bf42b9ca586727bd.html">Ultimi 30 giorni Politici del 13 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="d47939ea9a12eb1bfbf5fbb6799ac5e04e2d850f9579dcc5bf42b9ca586727bd.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/ultimi-30-giorni-politici-del-13-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri dell&#x27;11 febbraio 2026 - bruno rachiele d9497bf7567ff4d0cc2c3ef4705a23307a3c9a13443e6f265344d836794fe7f2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-11</span><span class="trust-hash" title="d9497bf7567ff4d0cc2c3ef4705a23307a3c9a13443e6f265344d836794fe7f2">SHA-256: d9497bf7567ff4d0…</span></div><h2 class="trust-item-title"><a href="d9497bf7567ff4d0cc2c3ef4705a23307a3c9a13443e6f265344d836794fe7f2.html">Dalle urne ai numeri dell&#x27;11 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="d9497bf7567ff4d0cc2c3ef4705a23307a3c9a13443e6f265344d836794fe7f2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/dalle-urne-ai-numeri-dell11-febbraio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 09 febbraio 2026 - bruno rachiele  97f866305e31e5e3d6bf132c7f86b8411f9852004f43180a4833b1fb01d8ad30"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-09</span><span class="trust-hash" title="97f866305e31e5e3d6bf132c7f86b8411f9852004f43180a4833b1fb01d8ad30">SHA-256: 97f866305e31e5e3…</span></div><h2 class="trust-item-title"><a href="97f866305e31e5e3d6bf132c7f86b8411f9852004f43180a4833b1fb01d8ad30.html">Gradimento dei Leader supermedia del 09 febbraio 2026 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="97f866305e31e5e3d6bf132c7f86b8411f9852004f43180a4833b1fb01d8ad30.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/gradimento-dei-leader-supermedia-del-09-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 07 febbraio 2026 – supermedia bruno rachiele cd1276afb32ad3c39d7e35d637ae21dff149e6d17ac5074a1d5048e5a070be34"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-07</span><span class="trust-hash" title="cd1276afb32ad3c39d7e35d637ae21dff149e6d17ac5074a1d5048e5a070be34">SHA-256: cd1276afb32ad3c3…</span></div><h2 class="trust-item-title"><a href="cd1276afb32ad3c39d7e35d637ae21dff149e6d17ac5074a1d5048e5a070be34.html">Sondaggio Politico 07 febbraio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="cd1276afb32ad3c39d7e35d637ae21dff149e6d17ac5074a1d5048e5a070be34.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/sondaggio-politico-07-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 06 febbraio 2026 - bruno rachiele b0e32062ebca22653376ce070d3c75415a84d03ac81d4cb4581552774ddb7b81"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-06</span><span class="trust-hash" title="b0e32062ebca22653376ce070d3c75415a84d03ac81d4cb4581552774ddb7b81">SHA-256: b0e32062ebca2265…</span></div><h2 class="trust-item-title"><a href="b0e32062ebca22653376ce070d3c75415a84d03ac81d4cb4581552774ddb7b81.html">Ultimi 30 giorni Politici del 06 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="b0e32062ebca22653376ce070d3c75415a84d03ac81d4cb4581552774ddb7b81.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/ultimi-30-giorni-politici-del-06-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 04 febbraio 2026 - bruno rachiele 9d35bfb0cd29d1f062d772a8a1738a43525891a937a1a289692c3cc08c14f84e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-04</span><span class="trust-hash" title="9d35bfb0cd29d1f062d772a8a1738a43525891a937a1a289692c3cc08c14f84e">SHA-256: 9d35bfb0cd29d1f0…</span></div><h2 class="trust-item-title"><a href="9d35bfb0cd29d1f062d772a8a1738a43525891a937a1a289692c3cc08c14f84e.html">Dalle urne ai numeri del 04 febbraio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="9d35bfb0cd29d1f062d772a8a1738a43525891a937a1a289692c3cc08c14f84e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/dalle-urne-ai-numeri-del-04-febbraio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 02 febbraio 2026 - bruno rachiele  fd54f28179c14859d280e5033b02814617cb2ca1437b657f09f31a30d0d7bb68"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-02-02</span><span class="trust-hash" title="fd54f28179c14859d280e5033b02814617cb2ca1437b657f09f31a30d0d7bb68">SHA-256: fd54f28179c14859…</span></div><h2 class="trust-item-title"><a href="fd54f28179c14859d280e5033b02814617cb2ca1437b657f09f31a30d0d7bb68.html">Gradimento dei Leader supermedia del 02 febbraio 2026 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="fd54f28179c14859d280e5033b02814617cb2ca1437b657f09f31a30d0d7bb68.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/02/gradimento-dei-leader-supermedia-02-febbraio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 31 gennaio 2026 – supermedia bruno rachiele 0e6674e4d2d3aba5c46bca2de1e3af60e1e36d1f65f3806709463cd47f44bd48"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-31</span><span class="trust-hash" title="0e6674e4d2d3aba5c46bca2de1e3af60e1e36d1f65f3806709463cd47f44bd48">SHA-256: 0e6674e4d2d3aba5…</span></div><h2 class="trust-item-title"><a href="0e6674e4d2d3aba5c46bca2de1e3af60e1e36d1f65f3806709463cd47f44bd48.html">Sondaggio Politico 31 gennaio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="0e6674e4d2d3aba5c46bca2de1e3af60e1e36d1f65f3806709463cd47f44bd48.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/sondaggio-politico-31-gennaio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 30 gennaio 2026 - bruno rachiele a4fc8632595321b736d30d9bb9defdd6362fb2ff07f19b3738bbc6eb519d4134"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-30</span><span class="trust-hash" title="a4fc8632595321b736d30d9bb9defdd6362fb2ff07f19b3738bbc6eb519d4134">SHA-256: a4fc8632595321b7…</span></div><h2 class="trust-item-title"><a href="a4fc8632595321b736d30d9bb9defdd6362fb2ff07f19b3738bbc6eb519d4134.html">Ultimi 30 giorni Politici del 30 gennaio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="a4fc8632595321b736d30d9bb9defdd6362fb2ff07f19b3738bbc6eb519d4134.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/ultimi-30-giorni-politici-30-gennaio-2026.html.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 28 gennaio 2026 - bruno rachiele 8907691e1cc6b10dcc0f59f5dbfddc45ea9473a8281822dc4a4bdb01432d6429"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-28</span><span class="trust-hash" title="8907691e1cc6b10dcc0f59f5dbfddc45ea9473a8281822dc4a4bdb01432d6429">SHA-256: 8907691e1cc6b10d…</span></div><h2 class="trust-item-title"><a href="8907691e1cc6b10dcc0f59f5dbfddc45ea9473a8281822dc4a4bdb01432d6429.html">Dalle urne ai numeri del 28 gennaio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="8907691e1cc6b10dcc0f59f5dbfddc45ea9473a8281822dc4a4bdb01432d6429.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/dalle-urne-ai-numeri-del-28-gennaio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 26 gennaio 2026 - bruno rachiele  5284658befbfda5b6b99a5c0a615fa8f890aabb60bb840692cf92371c4cb1e57"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-26</span><span class="trust-hash" title="5284658befbfda5b6b99a5c0a615fa8f890aabb60bb840692cf92371c4cb1e57">SHA-256: 5284658befbfda5b…</span></div><h2 class="trust-item-title"><a href="5284658befbfda5b6b99a5c0a615fa8f890aabb60bb840692cf92371c4cb1e57.html">Gradimento dei Leader supermedia del 26 gennaio 2026 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="5284658befbfda5b6b99a5c0a615fa8f890aabb60bb840692cf92371c4cb1e57.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/gradimento-dei-leader-supermedia-del-26.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 24 gennaio 2026 – supermedia bruno rachiele 495bd91a0514c6dfd5671c6be9e593112fbd1922b31552cfa72aacff9eee5dbf"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-24</span><span class="trust-hash" title="495bd91a0514c6dfd5671c6be9e593112fbd1922b31552cfa72aacff9eee5dbf">SHA-256: 495bd91a0514c6df…</span></div><h2 class="trust-item-title"><a href="495bd91a0514c6dfd5671c6be9e593112fbd1922b31552cfa72aacff9eee5dbf.html">Sondaggio Politico 24 gennaio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="495bd91a0514c6dfd5671c6be9e593112fbd1922b31552cfa72aacff9eee5dbf.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/sondaggio-politico-24-gennaio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 23 gennaio 2026 - bruno rachiele 242dec49c3894e08c238b79d3ec731ccd6efcf4b3cefa4ec177bcde7f3aea727"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-23</span><span class="trust-hash" title="242dec49c3894e08c238b79d3ec731ccd6efcf4b3cefa4ec177bcde7f3aea727">SHA-256: 242dec49c3894e08…</span></div><h2 class="trust-item-title"><a href="242dec49c3894e08c238b79d3ec731ccd6efcf4b3cefa4ec177bcde7f3aea727.html">Ultimi 30 giorni Politici del 23 gennaio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="242dec49c3894e08c238b79d3ec731ccd6efcf4b3cefa4ec177bcde7f3aea727.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/30-giorni-politici-del-23-gennaio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 21 gennaio 2026 - bruno rachiele 509ecaa1ddbd19daaaa0b6287709fb981f9635605a9bdd30e881c4cc861dac6f"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-21</span><span class="trust-hash" title="509ecaa1ddbd19daaaa0b6287709fb981f9635605a9bdd30e881c4cc861dac6f">SHA-256: 509ecaa1ddbd19da…</span></div><h2 class="trust-item-title"><a href="509ecaa1ddbd19daaaa0b6287709fb981f9635605a9bdd30e881c4cc861dac6f.html">Dalle urne ai numeri del 21 gennaio 2026 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="509ecaa1ddbd19daaaa0b6287709fb981f9635605a9bdd30e881c4cc861dac6f.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/dalle-urne-ai-numeri-del-21-gennaio.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 19 gennaio 2026 - bruno rachiele  99b5eb5fedcc75de2cab8c2eb66cb49dc525af48cd8e41398e720ebccf578d3f"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-19</span><span class="trust-hash" title="99b5eb5fedcc75de2cab8c2eb66cb49dc525af48cd8e41398e720ebccf578d3f">SHA-256: 99b5eb5fedcc75de…</span></div><h2 class="trust-item-title"><a href="99b5eb5fedcc75de2cab8c2eb66cb49dc525af48cd8e41398e720ebccf578d3f.html">Gradimento dei Leader supermedia del 19 gennaio 2026 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="99b5eb5fedcc75de2cab8c2eb66cb49dc525af48cd8e41398e720ebccf578d3f.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/gradimento-dei-leader-19-gennaio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 17 gennaio 2026 – supermedia bruno rachiele 4f660816748ec3dd44144d01d5b0f6a2e2fe1be8c205ba3a8f9d8445d579c5a2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-17</span><span class="trust-hash" title="4f660816748ec3dd44144d01d5b0f6a2e2fe1be8c205ba3a8f9d8445d579c5a2">SHA-256: 4f660816748ec3dd…</span></div><h2 class="trust-item-title"><a href="4f660816748ec3dd44144d01d5b0f6a2e2fe1be8c205ba3a8f9d8445d579c5a2.html">Sondaggio Politico 17 gennaio 2026 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="4f660816748ec3dd44144d01d5b0f6a2e2fe1be8c205ba3a8f9d8445d579c5a2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/sondaggio-politico-17-gennaio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="cosa emerge dal gradimento dei leader del 12 gennaio 2026 3b8ca0f3ba11bb2c76f08ce8cf1108cf5b8aaf1b525e6d9aaa92c79cf949a203"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-12</span><span class="trust-hash" title="3b8ca0f3ba11bb2c76f08ce8cf1108cf5b8aaf1b525e6d9aaa92c79cf949a203">SHA-256: 3b8ca0f3ba11bb2c…</span></div><h2 class="trust-item-title"><a href="3b8ca0f3ba11bb2c76f08ce8cf1108cf5b8aaf1b525e6d9aaa92c79cf949a203.html">Cosa emerge dal Gradimento dei Leader del 12 gennaio 2026</a></h2><div class="trust-item-actions"><a href="3b8ca0f3ba11bb2c76f08ce8cf1108cf5b8aaf1b525e6d9aaa92c79cf949a203.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/gradimento-leader-12-gennaio-2026.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggi politici 2026: cosa potrebbe cambiare in italia secondo gli analisti 813022d51c5a8a9fed99b08be844ddc24993116554789bfedb730cc901f30fa9"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-10</span><span class="trust-hash" title="813022d51c5a8a9fed99b08be844ddc24993116554789bfedb730cc901f30fa9">SHA-256: 813022d51c5a8a9f…</span></div><h2 class="trust-item-title"><a href="813022d51c5a8a9fed99b08be844ddc24993116554789bfedb730cc901f30fa9.html">Sondaggi Politici 2026: cosa potrebbe cambiare in Italia secondo gli analisti</a></h2><div class="trust-item-actions"><a href="813022d51c5a8a9fed99b08be844ddc24993116554789bfedb730cc901f30fa9.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/politica-2026-analisi-demoscopiche-scenari.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 05 gennaio 2026 - bruno rachiele  f994fc1d3d3e350faf9459c76e249c4a8890783c9b565a1a044f0f94b07c2bf4"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2026-01-05</span><span class="trust-hash" title="f994fc1d3d3e350faf9459c76e249c4a8890783c9b565a1a044f0f94b07c2bf4">SHA-256: f994fc1d3d3e350f…</span></div><h2 class="trust-item-title"><a href="f994fc1d3d3e350faf9459c76e249c4a8890783c9b565a1a044f0f94b07c2bf4.html">Gradimento dei Leader supermedia del 05 gennaio 2026 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="f994fc1d3d3e350faf9459c76e249c4a8890783c9b565a1a044f0f94b07c2bf4.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2026/01/gradimento-dei-leader-supermedia-del-05.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="messaggio di fine anno di mattarella 2025 | analisi parole - bruno rachiele 3babb7eda776c17dacc289397e3e4b0f2fd1f176296f7a038a447298252b94aa"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-31</span><span class="trust-hash" title="3babb7eda776c17dacc289397e3e4b0f2fd1f176296f7a038a447298252b94aa">SHA-256: 3babb7eda776c17d…</span></div><h2 class="trust-item-title"><a href="3babb7eda776c17dacc289397e3e4b0f2fd1f176296f7a038a447298252b94aa.html">Messaggio di fine anno di Mattarella 2025 | Analisi Parole - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="3babb7eda776c17dacc289397e3e4b0f2fd1f176296f7a038a447298252b94aa.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/messaggio-di-fine-anno-del-presidente.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggi politici  2025 – bruno rachiele 140c0317ff089103bd59e421c8c25968e575fb073a1d4b6843bc6009d35260e9"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-30</span><span class="trust-hash" title="140c0317ff089103bd59e421c8c25968e575fb073a1d4b6843bc6009d35260e9">SHA-256: 140c0317ff089103…</span></div><h2 class="trust-item-title"><a href="140c0317ff089103bd59e421c8c25968e575fb073a1d4b6843bc6009d35260e9.html">Sondaggi Politici  2025 – Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="140c0317ff089103bd59e421c8c25968e575fb073a1d4b6843bc6009d35260e9.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/sondaggi-politici-2025-bruno-rachiele.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader: la classifica definitiva del 2025 - bruno rachiele 0ca5f51da67d9280719ccacb76b6cd2952ee4602d6fdd89cb91705640b711ab2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-29</span><span class="trust-hash" title="0ca5f51da67d9280719ccacb76b6cd2952ee4602d6fdd89cb91705640b711ab2">SHA-256: 0ca5f51da67d9280…</span></div><h2 class="trust-item-title"><a href="0ca5f51da67d9280719ccacb76b6cd2952ee4602d6fdd89cb91705640b711ab2.html">Gradimento dei leader: la classifica definitiva del 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="0ca5f51da67d9280719ccacb76b6cd2952ee4602d6fdd89cb91705640b711ab2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/gradimento-dei-leader-la-classifica.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 27 dicembre 2025 – supermedia bruno rachiele 3350e7074c3ea5e4c1e31d8296e90bf3d6bc44baedc4ac00ae247e86b525551e"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-27</span><span class="trust-hash" title="3350e7074c3ea5e4c1e31d8296e90bf3d6bc44baedc4ac00ae247e86b525551e">SHA-256: 3350e7074c3ea5e4…</span></div><h2 class="trust-item-title"><a href="3350e7074c3ea5e4c1e31d8296e90bf3d6bc44baedc4ac00ae247e86b525551e.html">Sondaggio Politico 27 dicembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="3350e7074c3ea5e4c1e31d8296e90bf3d6bc44baedc4ac00ae247e86b525551e.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/sondaggio-politico-27-dicembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 26 dicembre 2025 - bruno rachiele c761082678b14d88e1bd0e3ab03e7ea8430258a8a6c432381dfa618709f06730"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-26</span><span class="trust-hash" title="c761082678b14d88e1bd0e3ab03e7ea8430258a8a6c432381dfa618709f06730">SHA-256: c761082678b14d88…</span></div><h2 class="trust-item-title"><a href="c761082678b14d88e1bd0e3ab03e7ea8430258a8a6c432381dfa618709f06730.html">Ultimi 30 giorni Politici del 26 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="c761082678b14d88e1bd0e3ab03e7ea8430258a8a6c432381dfa618709f06730.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/ultimi-30-giorni-politici-del-26.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 23 dicembre 2025 - bruno rachiele e4943fe4c53593eed1c537f6112bc2f112ec310ac9a2309fc89d005113bfbd72"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-23</span><span class="trust-hash" title="e4943fe4c53593eed1c537f6112bc2f112ec310ac9a2309fc89d005113bfbd72">SHA-256: e4943fe4c53593ee…</span></div><h2 class="trust-item-title"><a href="e4943fe4c53593eed1c537f6112bc2f112ec310ac9a2309fc89d005113bfbd72.html">Dalle urne ai numeri del 23 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="e4943fe4c53593eed1c537f6112bc2f112ec310ac9a2309fc89d005113bfbd72.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/dalle-urne-ai-numeri-del-23-dicembre.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 22 dicembre 2025 - bruno rachiele  99d22c514faf20c6f45aa8840045097ad80760a3173a0956c642f3e13b56f57c"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-22</span><span class="trust-hash" title="99d22c514faf20c6f45aa8840045097ad80760a3173a0956c642f3e13b56f57c">SHA-256: 99d22c514faf20c6…</span></div><h2 class="trust-item-title"><a href="99d22c514faf20c6f45aa8840045097ad80760a3173a0956c642f3e13b56f57c.html">Gradimento dei Leader supermedia del 22 dicembre 2025 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="99d22c514faf20c6f45aa8840045097ad80760a3173a0956c642f3e13b56f57c.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/gradimento-dei-leader-supermedia-del-22.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 20 dicembre 2025 – supermedia bruno rachiele 43203476f6ea1c50d992bd6503aab8a6c37cd15edf937c14daacab674dd652e0"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-20</span><span class="trust-hash" title="43203476f6ea1c50d992bd6503aab8a6c37cd15edf937c14daacab674dd652e0">SHA-256: 43203476f6ea1c50…</span></div><h2 class="trust-item-title"><a href="43203476f6ea1c50d992bd6503aab8a6c37cd15edf937c14daacab674dd652e0.html">Sondaggio Politico 20 dicembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="43203476f6ea1c50d992bd6503aab8a6c37cd15edf937c14daacab674dd652e0.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/sondaggio-politico-20-dicembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 19 dicembre 2025 - bruno rachiele 1981ccfadc1322e3fa64af3e186ed8bf797f1f26c06176282f96445066fda173"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-19</span><span class="trust-hash" title="1981ccfadc1322e3fa64af3e186ed8bf797f1f26c06176282f96445066fda173">SHA-256: 1981ccfadc1322e3…</span></div><h2 class="trust-item-title"><a href="1981ccfadc1322e3fa64af3e186ed8bf797f1f26c06176282f96445066fda173.html">Ultimi 30 giorni Politici del 19 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1981ccfadc1322e3fa64af3e186ed8bf797f1f26c06176282f96445066fda173.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/ultimi-30-giorni-politici-del-19.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 17 dicembre 2025 - bruno rachiele d8df3e6e72a3f65d3fcfe8125b0213545434935fc9dc4b103537e9198077c264"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-17</span><span class="trust-hash" title="d8df3e6e72a3f65d3fcfe8125b0213545434935fc9dc4b103537e9198077c264">SHA-256: d8df3e6e72a3f65d…</span></div><h2 class="trust-item-title"><a href="d8df3e6e72a3f65d3fcfe8125b0213545434935fc9dc4b103537e9198077c264.html">Dalle urne ai numeri del 17 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="d8df3e6e72a3f65d3fcfe8125b0213545434935fc9dc4b103537e9198077c264.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/dalle-urne-ai-numeri-del-17-dicembre.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 15 dicembre 2025 - bruno rachiele  02d87ee31720790c70487584528b73179498ea0c3fd63291621c20138618c465"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-15</span><span class="trust-hash" title="02d87ee31720790c70487584528b73179498ea0c3fd63291621c20138618c465">SHA-256: 02d87ee31720790c…</span></div><h2 class="trust-item-title"><a href="02d87ee31720790c70487584528b73179498ea0c3fd63291621c20138618c465.html">Gradimento dei Leader supermedia del 15 dicembre 2025 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="02d87ee31720790c70487584528b73179498ea0c3fd63291621c20138618c465.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/gradimento-dei-leader-supermedia-del-15.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 13 dicembre 2025 – supermedia bruno rachiele af4be520d1c2fe036c54ffbbe48cae42149c8343afc5582a0702af94f97ef9b9"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-13</span><span class="trust-hash" title="af4be520d1c2fe036c54ffbbe48cae42149c8343afc5582a0702af94f97ef9b9">SHA-256: af4be520d1c2fe03…</span></div><h2 class="trust-item-title"><a href="af4be520d1c2fe036c54ffbbe48cae42149c8343afc5582a0702af94f97ef9b9.html">Sondaggio Politico 13 dicembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="af4be520d1c2fe036c54ffbbe48cae42149c8343afc5582a0702af94f97ef9b9.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/sondaggio-politico-13-dicembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 12 dicembre 2025 - bruno rachiele 7cde0147d3e3ea4f52e4e338c5bc4a1ab528fb24facfc1c3baf0998986cba4fa"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-12</span><span class="trust-hash" title="7cde0147d3e3ea4f52e4e338c5bc4a1ab528fb24facfc1c3baf0998986cba4fa">SHA-256: 7cde0147d3e3ea4f…</span></div><h2 class="trust-item-title"><a href="7cde0147d3e3ea4f52e4e338c5bc4a1ab528fb24facfc1c3baf0998986cba4fa.html">Ultimi 30 giorni Politici del 12 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="7cde0147d3e3ea4f52e4e338c5bc4a1ab528fb24facfc1c3baf0998986cba4fa.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/ultimi-30-giorni-politici-del-12.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 10 dicembre 2025 - bruno rachiele a0cb7a2d9a6d80436bf9f5f4d83d9df726b8a1d9ce99121199de84fb23c89274"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-10</span><span class="trust-hash" title="a0cb7a2d9a6d80436bf9f5f4d83d9df726b8a1d9ce99121199de84fb23c89274">SHA-256: a0cb7a2d9a6d8043…</span></div><h2 class="trust-item-title"><a href="a0cb7a2d9a6d80436bf9f5f4d83d9df726b8a1d9ce99121199de84fb23c89274.html">Dalle urne ai numeri del 10 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="a0cb7a2d9a6d80436bf9f5f4d83d9df726b8a1d9ce99121199de84fb23c89274.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/dalle-urne-ai-numeri-del-10-dicembre.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia dell&#x27;8 dicembre 2025 - bruno rachiele  b86277d66b7e89c7820e615b3b6dad93ee15cc49c12c2f29e517e4eb5695caff"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-08</span><span class="trust-hash" title="b86277d66b7e89c7820e615b3b6dad93ee15cc49c12c2f29e517e4eb5695caff">SHA-256: b86277d66b7e89c7…</span></div><h2 class="trust-item-title"><a href="b86277d66b7e89c7820e615b3b6dad93ee15cc49c12c2f29e517e4eb5695caff.html">Gradimento dei Leader supermedia dell&#x27;8 dicembre 2025 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="b86277d66b7e89c7820e615b3b6dad93ee15cc49c12c2f29e517e4eb5695caff.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/gradimento-dei-leader-supermedia-dell8.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 06 dicembre 2025 – supermedia bruno rachiele 1c975bdb51f0876fcf91c167466e0feb252ca4769c81bd258634f9e16db6535b"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-06</span><span class="trust-hash" title="1c975bdb51f0876fcf91c167466e0feb252ca4769c81bd258634f9e16db6535b">SHA-256: 1c975bdb51f0876f…</span></div><h2 class="trust-item-title"><a href="1c975bdb51f0876fcf91c167466e0feb252ca4769c81bd258634f9e16db6535b.html">Sondaggio Politico 06 dicembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1c975bdb51f0876fcf91c167466e0feb252ca4769c81bd258634f9e16db6535b.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/sondaggio-politico-06-dicembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 05 dicembre 2025 - bruno rachiele 386238729ddf01524d25c6b42b22ba38acd96f0d1f782acf2357e02b1d87ccb4"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-05</span><span class="trust-hash" title="386238729ddf01524d25c6b42b22ba38acd96f0d1f782acf2357e02b1d87ccb4">SHA-256: 386238729ddf0152…</span></div><h2 class="trust-item-title"><a href="386238729ddf01524d25c6b42b22ba38acd96f0d1f782acf2357e02b1d87ccb4.html">Ultimi 30 giorni Politici del 05 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="386238729ddf01524d25c6b42b22ba38acd96f0d1f782acf2357e02b1d87ccb4.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/ultimi-30-giorni-politici-del-05.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 03 dicembre 2025 - bruno rachiele 517a6275eeb97e6a808516915843e086be9c1e755e827be11e5d5941eab0ba50"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-03</span><span class="trust-hash" title="517a6275eeb97e6a808516915843e086be9c1e755e827be11e5d5941eab0ba50">SHA-256: 517a6275eeb97e6a…</span></div><h2 class="trust-item-title"><a href="517a6275eeb97e6a808516915843e086be9c1e755e827be11e5d5941eab0ba50.html">Dalle urne ai numeri del 03 dicembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="517a6275eeb97e6a808516915843e086be9c1e755e827be11e5d5941eab0ba50.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/dalle-urne-ai-numeri-del-03-dicembre.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="gradimento dei leader supermedia del 1 dicembre 2025 - bruno rachiele  4408576c59302a21311b52ed44e88b7972546bc2320e4e0e8f3527b4f9e13643"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-12-01</span><span class="trust-hash" title="4408576c59302a21311b52ed44e88b7972546bc2320e4e0e8f3527b4f9e13643">SHA-256: 4408576c59302a21…</span></div><h2 class="trust-item-title"><a href="4408576c59302a21311b52ed44e88b7972546bc2320e4e0e8f3527b4f9e13643.html">Gradimento dei Leader supermedia del 1 dicembre 2025 - Bruno Rachiele </a></h2><div class="trust-item-actions"><a href="4408576c59302a21311b52ed44e88b7972546bc2320e4e0e8f3527b4f9e13643.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/12/gradimento-dei-leader-supermedia-del-1.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 29 novembre 2025 – supermedia bruno rachiele 90b9ae638fdf3b024f670cd58bb35e8e67b336e4b9d7e775212bac42eb09d0e0"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-29</span><span class="trust-hash" title="90b9ae638fdf3b024f670cd58bb35e8e67b336e4b9d7e775212bac42eb09d0e0">SHA-256: 90b9ae638fdf3b02…</span></div><h2 class="trust-item-title"><a href="90b9ae638fdf3b024f670cd58bb35e8e67b336e4b9d7e775212bac42eb09d0e0.html">Sondaggio Politico 29 novembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="90b9ae638fdf3b024f670cd58bb35e8e67b336e4b9d7e775212bac42eb09d0e0.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/sondaggio-politico-29-novembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ultimi 30 giorni politici del 28 novembre 2025 - bruno rachiele 4e5539c5139f4327f417d3604a6edcb0180102a70fa5ccf231191c7fa260b5e9"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-28</span><span class="trust-hash" title="4e5539c5139f4327f417d3604a6edcb0180102a70fa5ccf231191c7fa260b5e9">SHA-256: 4e5539c5139f4327…</span></div><h2 class="trust-item-title"><a href="4e5539c5139f4327f417d3604a6edcb0180102a70fa5ccf231191c7fa260b5e9.html">Ultimi 30 giorni Politici del 28 novembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="4e5539c5139f4327f417d3604a6edcb0180102a70fa5ccf231191c7fa260b5e9.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/ultimi-30-giorni-politici-28-novembre.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="dalle urne ai numeri del 26 novembre 2025 - bruno rachiele 1f31ecbb6ceec9fde26947939611126b19c7390c2b4ea30f74dff1725e07fb72"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-26</span><span class="trust-hash" title="1f31ecbb6ceec9fde26947939611126b19c7390c2b4ea30f74dff1725e07fb72">SHA-256: 1f31ecbb6ceec9fd…</span></div><h2 class="trust-item-title"><a href="1f31ecbb6ceec9fde26947939611126b19c7390c2b4ea30f74dff1725e07fb72.html">Dalle urne ai numeri del 26 novembre 2025 - Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="1f31ecbb6ceec9fde26947939611126b19c7390c2b4ea30f74dff1725e07fb72.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/dalle-urne-ai-numeri-26-novembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 22 novembre 2025 – supermedia bruno rachiele 49ce6d48850e9118b70793a60166200ad98feca5ff62b9bdf18ea01b9b45d4df"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-22</span><span class="trust-hash" title="49ce6d48850e9118b70793a60166200ad98feca5ff62b9bdf18ea01b9b45d4df">SHA-256: 49ce6d48850e9118…</span></div><h2 class="trust-item-title"><a href="49ce6d48850e9118b70793a60166200ad98feca5ff62b9bdf18ea01b9b45d4df.html">Sondaggio Politico 22 novembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="49ce6d48850e9118b70793a60166200ad98feca5ff62b9bdf18ea01b9b45d4df.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/sondaggio-politico-22-novembre-2025-amp.html.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 15 novembre 2025 – supermedia bruno rachiele 97c8fc371de54691c5b0a4e744cb99fd01b523276e12aec6cf6db4efe50761c1"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-15</span><span class="trust-hash" title="97c8fc371de54691c5b0a4e744cb99fd01b523276e12aec6cf6db4efe50761c1">SHA-256: 97c8fc371de54691…</span></div><h2 class="trust-item-title"><a href="97c8fc371de54691c5b0a4e744cb99fd01b523276e12aec6cf6db4efe50761c1.html">Sondaggio Politico 15 novembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="97c8fc371de54691c5b0a4e744cb99fd01b523276e12aec6cf6db4efe50761c1.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/sondaggio-politico-15-novembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 08 novembre 2025 – supermedia bruno rachiele 7f1b20ab1e950211c12454e4e375b11eba04978978806e5da34c81a20097b839"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-08</span><span class="trust-hash" title="7f1b20ab1e950211c12454e4e375b11eba04978978806e5da34c81a20097b839">SHA-256: 7f1b20ab1e950211…</span></div><h2 class="trust-item-title"><a href="7f1b20ab1e950211c12454e4e375b11eba04978978806e5da34c81a20097b839.html">Sondaggio Politico 08 novembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="7f1b20ab1e950211c12454e4e375b11eba04978978806e5da34c81a20097b839.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/11/sondaggio-politico-08-novembre-2025-amp.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 01 novembre 2025 – supermedia bruno rachiele f5031be1352c5c4442aac0ad32970feace435c325d8571071a34c22eb503594f"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-11-01</span><span class="trust-hash" title="f5031be1352c5c4442aac0ad32970feace435c325d8571071a34c22eb503594f">SHA-256: f5031be1352c5c44…</span></div><h2 class="trust-item-title"><a href="f5031be1352c5c4442aac0ad32970feace435c325d8571071a34c22eb503594f.html">Sondaggio Politico 01 novembre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="f5031be1352c5c4442aac0ad32970feace435c325d8571071a34c22eb503594f.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/sondaggio-politico-01-novembre-2025-amp.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 25 ottobre 2025 – supermedia bruno rachiele a0380557f73fe75b82cb15010f6509181fa53ca40c19f3e875683b91502bbd6c"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-10-25</span><span class="trust-hash" title="a0380557f73fe75b82cb15010f6509181fa53ca40c19f3e875683b91502bbd6c">SHA-256: a0380557f73fe75b…</span></div><h2 class="trust-item-title"><a href="a0380557f73fe75b82cb15010f6509181fa53ca40c19f3e875683b91502bbd6c.html">Sondaggio Politico 25 ottobre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="a0380557f73fe75b82cb15010f6509181fa53ca40c19f3e875683b91502bbd6c.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/sondaggio-politico-25-ottobre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 18 ottobre 2025 – supermedia bruno rachiele 0b6a5f1d02dd861347e60e8352af7676f35b79693458c80d5d13947a262f7dd2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-10-18</span><span class="trust-hash" title="0b6a5f1d02dd861347e60e8352af7676f35b79693458c80d5d13947a262f7dd2">SHA-256: 0b6a5f1d02dd8613…</span></div><h2 class="trust-item-title"><a href="0b6a5f1d02dd861347e60e8352af7676f35b79693458c80d5d13947a262f7dd2.html">Sondaggio Politico 18 ottobre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="0b6a5f1d02dd861347e60e8352af7676f35b79693458c80d5d13947a262f7dd2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/sondaggio-politico-18-ottobre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="sondaggio politico 11 ottobre 2025 – supermedia bruno rachiele 2e24691de488798d7191584f51f81fa1c1a22d58efea54feb6fad0293d997e3a"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-10-11</span><span class="trust-hash" title="2e24691de488798d7191584f51f81fa1c1a22d58efea54feb6fad0293d997e3a">SHA-256: 2e24691de488798d…</span></div><h2 class="trust-item-title"><a href="2e24691de488798d7191584f51f81fa1c1a22d58efea54feb6fad0293d997e3a.html">Sondaggio Politico 11 ottobre 2025 – Supermedia Bruno Rachiele</a></h2><div class="trust-item-actions"><a href="2e24691de488798d7191584f51f81fa1c1a22d58efea54feb6fad0293d997e3a.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/blog-post.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="eletti elezioni regionali calabria 2025 5cfb3f3ff2ef4d09b84af4567ae9e8bbac35a1c1633c83ed9801bcde1f010de0"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-10-07</span><span class="trust-hash" title="5cfb3f3ff2ef4d09b84af4567ae9e8bbac35a1c1633c83ed9801bcde1f010de0">SHA-256: 5cfb3f3ff2ef4d09…</span></div><h2 class="trust-item-title"><a href="5cfb3f3ff2ef4d09b84af4567ae9e8bbac35a1c1633c83ed9801bcde1f010de0.html">Eletti Elezioni Regionali Calabria 2025</a></h2><div class="trust-item-actions"><a href="5cfb3f3ff2ef4d09b84af4567ae9e8bbac35a1c1633c83ed9801bcde1f010de0.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/eletti-elezioni-regionali-calabria-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="speciale elezioni regionali 2025 - san pietro a maida: risultati ufficiali a8a5b11e9360bd0a01a7f67c930be07866bbbd0c094c6976929164e8598fc2ea"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-10-02</span><span class="trust-hash" title="a8a5b11e9360bd0a01a7f67c930be07866bbbd0c094c6976929164e8598fc2ea">SHA-256: a8a5b11e9360bd0a…</span></div><h2 class="trust-item-title"><a href="a8a5b11e9360bd0a01a7f67c930be07866bbbd0c094c6976929164e8598fc2ea.html">Speciale Elezioni Regionali 2025 - San Pietro a Maida: Risultati UFFICIALI</a></h2><div class="trust-item-actions"><a href="a8a5b11e9360bd0a01a7f67c930be07866bbbd0c094c6976929164e8598fc2ea.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/10/speciale-elezioni-regionali-2025-san.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 27 settembre 2025 e1e0c6d7ff7019f8898cbdc254e26118a15f71515e5eefc5e192fe9a7350d6c7"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-09-27</span><span class="trust-hash" title="e1e0c6d7ff7019f8898cbdc254e26118a15f71515e5eefc5e192fe9a7350d6c7">SHA-256: e1e0c6d7ff7019f8…</span></div><h2 class="trust-item-title"><a href="e1e0c6d7ff7019f8898cbdc254e26118a15f71515e5eefc5e192fe9a7350d6c7.html">Intenzioni di Voto - 27 settembre 2025</a></h2><div class="trust-item-actions"><a href="e1e0c6d7ff7019f8898cbdc254e26118a15f71515e5eefc5e192fe9a7350d6c7.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/09/intenzioni-di-voto-27-settembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 13 settembre 2025 f8390de84a849cdd799e773513fbc3ef06135b653a2dfe7f1c00a3c2544c96c7"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-09-13</span><span class="trust-hash" title="f8390de84a849cdd799e773513fbc3ef06135b653a2dfe7f1c00a3c2544c96c7">SHA-256: f8390de84a849cdd…</span></div><h2 class="trust-item-title"><a href="f8390de84a849cdd799e773513fbc3ef06135b653a2dfe7f1c00a3c2544c96c7.html">Intenzioni di Voto - 13 settembre 2025</a></h2><div class="trust-item-actions"><a href="f8390de84a849cdd799e773513fbc3ef06135b653a2dfe7f1c00a3c2544c96c7.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/09/intenzioni-di-voto-13-settembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 06 settembre 2025 ecb5e0dfcd75da3a55405b7890c224d962f7a7b3e6d2ada81fd1eb395abd46bb"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-09-06</span><span class="trust-hash" title="ecb5e0dfcd75da3a55405b7890c224d962f7a7b3e6d2ada81fd1eb395abd46bb">SHA-256: ecb5e0dfcd75da3a…</span></div><h2 class="trust-item-title"><a href="ecb5e0dfcd75da3a55405b7890c224d962f7a7b3e6d2ada81fd1eb395abd46bb.html">Intenzioni di Voto - 06 settembre 2025</a></h2><div class="trust-item-actions"><a href="ecb5e0dfcd75da3a55405b7890c224d962f7a7b3e6d2ada81fd1eb395abd46bb.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/09/intenzioni-di-voto-06-settembre-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="ballottaggio lamezia terme 2025: risultati in diretta 15a2cf50bb6ec0d536283b4aae9ad886994ec9f04a10af81b7baa8d698d44244"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-06-07</span><span class="trust-hash" title="15a2cf50bb6ec0d536283b4aae9ad886994ec9f04a10af81b7baa8d698d44244">SHA-256: 15a2cf50bb6ec0d5…</span></div><h2 class="trust-item-title"><a href="15a2cf50bb6ec0d536283b4aae9ad886994ec9f04a10af81b7baa8d698d44244.html">Ballottaggio Lamezia Terme 2025: Risultati in Diretta</a></h2><div class="trust-item-actions"><a href="15a2cf50bb6ec0d536283b4aae9ad886994ec9f04a10af81b7baa8d698d44244.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/06/ballottaggio-lamezia-terme-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="referendum 2025 a san pietro a maida risultati ufficiali d262fe9c6506d06f851f2c12f5f0fb0a5cd7f04a1106a2ab0b6b00b7275db114"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-06-07</span><span class="trust-hash" title="d262fe9c6506d06f851f2c12f5f0fb0a5cd7f04a1106a2ab0b6b00b7275db114">SHA-256: d262fe9c6506d06f…</span></div><h2 class="trust-item-title"><a href="d262fe9c6506d06f851f2c12f5f0fb0a5cd7f04a1106a2ab0b6b00b7275db114.html">Referendum 2025 a San Pietro a Maida risultati ufficiali</a></h2><div class="trust-item-actions"><a href="d262fe9c6506d06f851f2c12f5f0fb0a5cd7f04a1106a2ab0b6b00b7275db114.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/06/referendum-2025-san-pietro-maida.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="referendum 2025: guida al voto dell’8 e 9 giugno – quesiti, orari e documenti 9af89716863b420cc8d8079b7336eb94e606848d47633c58f2901da4e860a758"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-06-06</span><span class="trust-hash" title="9af89716863b420cc8d8079b7336eb94e606848d47633c58f2901da4e860a758">SHA-256: 9af89716863b420c…</span></div><h2 class="trust-item-title"><a href="9af89716863b420cc8d8079b7336eb94e606848d47633c58f2901da4e860a758.html">Referendum 2025: Guida al Voto dell’8 e 9 Giugno – Quesiti, Orari e Documenti</a></h2><div class="trust-item-actions"><a href="9af89716863b420cc8d8079b7336eb94e606848d47633c58f2901da4e860a758.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/06/referendum-2025-guida-al-voto-dell8-e-9.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="la censura letteraria: libri vietati e il loro impatto cffb863863269caa5c523193d10628b753981c5a5d63d93d1a50d42356eb8346"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-04-06</span><span class="trust-hash" title="cffb863863269caa5c523193d10628b753981c5a5d63d93d1a50d42356eb8346">SHA-256: cffb863863269caa…</span></div><h2 class="trust-item-title"><a href="cffb863863269caa5c523193d10628b753981c5a5d63d93d1a50d42356eb8346.html">La censura letteraria: Libri vietati e il loro impatto</a></h2><div class="trust-item-actions"><a href="cffb863863269caa5c523193d10628b753981c5a5d63d93d1a50d42356eb8346.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/04/la-censura-letteraria-libri-vietati-e.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 05 aprile 2025 b29661e5f61ecfbde4bb791dd327026dcc1f14be50b116dd7e15a20f1e8cdc5c"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-04-05</span><span class="trust-hash" title="b29661e5f61ecfbde4bb791dd327026dcc1f14be50b116dd7e15a20f1e8cdc5c">SHA-256: b29661e5f61ecfbd…</span></div><h2 class="trust-item-title"><a href="b29661e5f61ecfbde4bb791dd327026dcc1f14be50b116dd7e15a20f1e8cdc5c.html">Intenzioni di Voto - 05 aprile 2025</a></h2><div class="trust-item-actions"><a href="b29661e5f61ecfbde4bb791dd327026dcc1f14be50b116dd7e15a20f1e8cdc5c.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/04/intenzioni-di-voto-05-aprile-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="boom del settore digitale: l’italia è pronta per la rivoluzione 4.0? b206a3ccffb6d00b0831583b5494fd29b763701b50238cdef4afde2c95b0741d"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-31</span><span class="trust-hash" title="b206a3ccffb6d00b0831583b5494fd29b763701b50238cdef4afde2c95b0741d">SHA-256: b206a3ccffb6d00b…</span></div><h2 class="trust-item-title"><a href="b206a3ccffb6d00b0831583b5494fd29b763701b50238cdef4afde2c95b0741d.html">Boom del Settore Digitale: L’Italia è Pronta per la Rivoluzione 4.0?</a></h2><div class="trust-item-actions"><a href="b206a3ccffb6d00b0831583b5494fd29b763701b50238cdef4afde2c95b0741d.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/boom-del-settore-digitale-litalia-e.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="come i libri riflettono il nostro tempo f2aca68433b7d8d1b3f1aa6313d691ee2968dd692b975abf23467c1cae38c6b5"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-30</span><span class="trust-hash" title="f2aca68433b7d8d1b3f1aa6313d691ee2968dd692b975abf23467c1cae38c6b5">SHA-256: f2aca68433b7d8d1…</span></div><h2 class="trust-item-title"><a href="f2aca68433b7d8d1b3f1aa6313d691ee2968dd692b975abf23467c1cae38c6b5.html">Come i libri riflettono il nostro tempo</a></h2><div class="trust-item-actions"><a href="f2aca68433b7d8d1b3f1aa6313d691ee2968dd692b975abf23467c1cae38c6b5.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/come-i-libri-riflettono-il-nostro-tempo.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 29 marzo 2025 d844cfc044edc02161b071b3ad01f7dd289550d140a9141bc1d622c60c394952"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-29</span><span class="trust-hash" title="d844cfc044edc02161b071b3ad01f7dd289550d140a9141bc1d622c60c394952">SHA-256: d844cfc044edc021…</span></div><h2 class="trust-item-title"><a href="d844cfc044edc02161b071b3ad01f7dd289550d140a9141bc1d622c60c394952.html">Intenzioni di Voto - 29 marzo 2025</a></h2><div class="trust-item-actions"><a href="d844cfc044edc02161b071b3ad01f7dd289550d140a9141bc1d622c60c394952.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/intenzioni-di-voto-29-marzo-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="evasione fiscale 2024: dati e impatti sull&#x27;economia italiana 5678c822e234b402f8db4ce9923c6ab4658362b24449ea7b2f4787fbff45da13"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-24</span><span class="trust-hash" title="5678c822e234b402f8db4ce9923c6ab4658362b24449ea7b2f4787fbff45da13">SHA-256: 5678c822e234b402…</span></div><h2 class="trust-item-title"><a href="5678c822e234b402f8db4ce9923c6ab4658362b24449ea7b2f4787fbff45da13.html">Evasione Fiscale 2024: Dati e Impatti sull&#x27;Economia Italiana</a></h2><div class="trust-item-actions"><a href="5678c822e234b402f8db4ce9923c6ab4658362b24449ea7b2f4787fbff45da13.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/evasione-fiscale-2024-dati-e-impatti.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="consigli per chi si avvicina alla lettura: da dove iniziare? 126e10bb61cd0e64da925e739f018841d028a720610a263a90a0cbee0d8559d2"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-23</span><span class="trust-hash" title="126e10bb61cd0e64da925e739f018841d028a720610a263a90a0cbee0d8559d2">SHA-256: 126e10bb61cd0e64…</span></div><h2 class="trust-item-title"><a href="126e10bb61cd0e64da925e739f018841d028a720610a263a90a0cbee0d8559d2.html">Consigli per chi si avvicina alla lettura: Da dove iniziare?</a></h2><div class="trust-item-actions"><a href="126e10bb61cd0e64da925e739f018841d028a720610a263a90a0cbee0d8559d2.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/consigli-per-chi-si-avvicina-alla.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+<article class="trust-item" data-search="intenzioni di voto - 22 marzo 2025 5393ae28942041c59b416a81bb6d7b3e2bb81eda5943c6901a8af279273a38df"><div class="trust-item-top"><span class="trust-pill">✓ Verificato • 2025-03-22</span><span class="trust-hash" title="5393ae28942041c59b416a81bb6d7b3e2bb81eda5943c6901a8af279273a38df">SHA-256: 5393ae28942041c5…</span></div><h2 class="trust-item-title"><a href="5393ae28942041c59b416a81bb6d7b3e2bb81eda5943c6901a8af279273a38df.html">Intenzioni di Voto - 22 marzo 2025</a></h2><div class="trust-item-actions"><a href="5393ae28942041c59b416a81bb6d7b3e2bb81eda5943c6901a8af279273a38df.html" class="link-cert">Apri certificato →</a><a href="https://www.brunorachiele.it/2025/03/intenzioni-di-voto-22-marzo-2025.html" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a></div></article>
+
+    </div>
+  </main>
+
+  <footer>
+    Sistema di verifica e integrità editoriale di <strong>BrunoRachiele.it</strong> • Impronte generate automaticamente dal feed ufficiale dell'editore.
+  </footer>
+
+  <script>
+    document.getElementById('trustSearch').addEventListener('input', function(e) {
+      var q = e.target.value.toLowerCase().trim();
+      var items = document.querySelectorAll('.trust-item');
+      items.forEach(function(el) {
+        var text = el.getAttribute('data-search') || '';
+        el.style.display = text.indexOf(q) !== -1 ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
