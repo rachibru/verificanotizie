@@ -1,6 +1,5 @@
 import hashlib
 import json
-import os
 import re
 import urllib.request
 from html import escape
@@ -14,7 +13,6 @@ def clean_html(raw_html):
     return text
 
 def calcola_hash_articolo(canonical_url):
-    # Impronta SHA-256 deterministica legata all'URL canonico del post
     return hashlib.sha256(canonical_url.strip().encode("utf-8")).hexdigest()
 
 def main():
@@ -43,7 +41,6 @@ def main():
         if not canonical_url:
             continue
 
-        # Normalizza in https
         canonical_url = canonical_url.replace("http://", "https://")
         doc_hash = calcola_hash_articolo(canonical_url)
         descrizione = clean_html(content_raw)[:240] + "..."
@@ -69,39 +66,36 @@ def main():
             "url": canonical_url
         })
 
-    # Genera la homepage index.html con il registro pubblico
+    # Genera le card HTML per la index
     righe_html = ""
     for item in indice_articoli:
         righe_html += f"""
-        <li style="padding: 14px 0; border-bottom: 1px solid #dce3ec;">
-          <div style="font-size: 0.8rem; color: #5a6778;">{escape(item['date'])} • SHA-256: <code>{item['hash'][:16]}...</code></div>
-          <a href="{item['hash']}.html" style="font-weight: 600; color: #0f294a; text-decoration: none; font-size: 1.02rem;">{escape(item['title'])}</a>
-        </li>
+        <article class="trust-item" data-search="{escape(item['title'].lower())} {item['hash']}">
+          <div class="trust-item-top">
+            <span class="trust-pill">✓ Verificato • {escape(item['date'])}</span>
+            <span class="trust-hash" title="{item['hash']}">SHA-256: {item['hash'][:16]}…</span>
+          </div>
+          <h2 class="trust-item-title">
+            <a href="{item['hash']}.html">{escape(item['title'])}</a>
+          </h2>
+          <div class="trust-item-actions">
+            <a href="{item['hash']}.html" class="link-cert">Apri certificato →</a>
+            <a href="{escape(item['url'])}" target="_blank" rel="noopener" class="link-orig">Articolo originale ↗</a>
+          </div>
+        </article>
         """
+
+    totale = len(indice_articoli)
 
     index_html = f"""<!doctype html>
 <html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registro Pubblico di Tracciabilità | BrunoRachiele.it</title>
-  <link rel="icon" href="https://www.brunorachiele.it/favicon.ico">
-</head>
-<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f7fa; color: #1c2430; margin: 0; padding: 24px 16px;">
-  <div style="max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid #dce3ec; border-radius: 12px; padding: 28px;">
-    <h1 style="color: #0f294a; margin-top: 0;">Registro di Tracciabilità Editoriale — BrunoRachiele.it</h1>
-    <p style="color: #5a6778;">Elenco pubblico dei contenuti verificati con impronta crittografica SHA-256 e conformità agli standard di trasparenza giornalistica.</p>
-    <ul style="list-style: none; padding: 0; margin: 20px 0 0 0;">
-      {righe_html}
-    </ul>
-  </div>
-</body>
-</html>"""
-
-    with open("index.html", "w", encoding="utf-8") as idx:
-        idx.write(index_html)
-
-    print(f"Generate {len(indice_articoli)} schede di certificazione.")
-
-if __name__ == "__main__":
-    main()
+  <title>Notizie pubblicate | brunorachiele.it</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="https://static.brunorachiele.it/logo.png">
+  <style>
+    :root {{
+      --primary: #0f294a;
+      --primary
